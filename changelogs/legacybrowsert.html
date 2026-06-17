@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LegacyBrowsert - Changelog</title>
+  <link rel="stylesheet" href="../assets/site.css?v=4">
+  <style>
+    body { padding: 1.5rem 2rem 3rem; }
+    .changelog-wrap { max-width: 760px; margin: 0 auto; }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .panel h2 { margin: 0 0 0.35rem; font-size: 1rem; }
+    .date { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.75rem; }
+    ul { margin: 0; padding-left: 1.15rem; color: var(--muted); }
+    li { margin: 0.3rem 0; }
+    .breadcrumb { margin-bottom: 1rem; font-size: 0.82rem; color: var(--muted); }
+    .breadcrumb a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="changelog-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Downloads</a> / LegacyBrowsert changelog</nav>
+    <h1>LegacyBrowsert</h1>
+    <p style="color:var(--muted)">Retro MSHTML browser for Windows 10/11 (separate Windows ME edition available).</p>
+    <section class="panel">
+      <h2>Version 1.2.0</h2>
+      <p class="date">June 2026</p>
+      <ul>
+        <li>Windows 10/11 WinForms shell using the MSHTML (Trident) engine.</li>
+        <li>Bookmarks, settings persistence, toolbar, and TLS bridge hook for HTTPS via a LAN helper.</li>
+        <li>Installer: <code>LegacyBrowsert-Setup-1.2.0.exe</code> (.NET 8).</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>Windows ME edition</h2>
+      <p class="date">v1.1.0</p>
+      <ul>
+        <li>Standalone HTA / <code>LegacyBrowsert-ME.exe</code> launcher for Windows ME and 9x.</li>
+        <li>Optional <code>LegacyBrowsert-ME-Setup</code> installer built with NSIS 2.46.</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MouseHelper - Changelog</title>
+  <link rel="stylesheet" href="../assets/site.css?v=4">
+  <style>
+    body { padding: 1.5rem 2rem 3rem; }
+    .changelog-wrap { max-width: 760px; margin: 0 auto; }
+    pre { white-space: pre-wrap; font-family: inherit; line-height: 1.55; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+    .breadcrumb { margin-bottom: 1rem; font-size: 0.82rem; color: var(--muted); }
+    .breadcrumb a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="changelog-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Downloads</a> / MouseHelper changelog</nav>
+    <h1>MouseHelper</h1>
+    <pre># MouseMover Changelog
+
+## 1.0.1 — June 16, 2026
+- Mouse movement clamped to screen working area (multi-monitor safe)
+- Timers disposed cleanly on exit
+- Migrated to .NET 8 WinForms (builds without .NET Framework 4.8 targeting pack)
+- Windows installer (Inno Setup) and Programming Workshop release packaging
+- Copyright and author metadata updated (Thijs Boekholt)
+
+## 1.0.0 — 2025
+- Initial release: moves cursor every 60 seconds to prevent idle/sleep
+</pre>
+  </div>
+</body>
+</html>
