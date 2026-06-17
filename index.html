@@ -4,240 +4,196 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AzzKickah84 — Windows Downloads</title>
-  <meta name="description" content="Official Windows installer downloads by AzzKickah84. No source code — installers only.">
-  <style>
-    :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --accent-hover: #79b8ff;
-      --green: #3fb950;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-    header {
-      border-bottom: 1px solid var(--border);
-      padding: 2.5rem 1.5rem 2rem;
-      text-align: center;
-      background: linear-gradient(180deg, #161b22 0%, var(--bg) 100%);
-    }
-    header h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
-    header p { color: var(--muted); max-width: 36rem; margin: 0 auto; font-size: 0.95rem; }
-    main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      transition: border-color 0.15s;
-    }
-    .card:hover { border-color: #484f58; }
-    .card h2 { font-size: 1.1rem; font-weight: 600; }
-    .card .desc { color: var(--muted); font-size: 0.875rem; flex: 1; }
-    .meta { font-size: 0.8rem; color: var(--muted); }
-    .meta span { margin-right: 0.75rem; }
-    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem; }
-    .btn {
-      display: inline-block;
-      padding: 0.45rem 0.9rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1px solid transparent;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--green);
-      color: #fff;
-    }
-    .btn-primary:hover { filter: brightness(1.1); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--accent);
-      border-color: var(--border);
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-hover); }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--muted);
-      font-size: 0.8rem;
-      border-top: 1px solid var(--border);
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    .visitor-counter {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1.25rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-    }
-    .visitor-counter img { height: 20px; }
-  </style>
+  <meta name="description" content="Official Windows installer downloads by AzzKickah84. Release binaries only — no source code.">
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-  <header>
-    <h1>AzzKickah84 — Windows Downloads</h1>
-    <p>Official installer downloads for my Windows applications. These repositories contain release binaries only — no source code.</p>
-  </header>
+  <div class="catalog-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>AzzKickah84</h1>
+        <p>Windows software by Thijs Boekholt — installers and release notes only.</p>
+      </div>
+      <div class="nav-label">Browse</div>
+      <nav>
+        <button type="button" class="nav-item active" data-cat="all">All apps</button>
+        <button type="button" class="nav-item" data-cat="Productivity">Productivity</button>
+        <button type="button" class="nav-item" data-cat="Utilities">Utilities</button>
+        <button type="button" class="nav-item" data-cat="Communication">Communication</button>
+        <button type="button" class="nav-item" data-cat="Games">Games</button>
+      </nav>
+      <div class="sidebar-stats">
+        <strong>10 apps</strong>
+        511 MB total &middot; updated June 2026<br>
+        <a href="https://github.com/AzzKickah84">GitHub profile</a>
+      </div>
+    </aside>
 
-  <main>
-    <div class="grid">
+    <div class="catalog-main">
+      <div class="topbar">
+        <h2>Downloads</h2>
+        <div class="search-wrap">
+          <input id="search" type="search" placeholder="Search apps..." aria-label="Search apps">
+        </div>
+      </div>
 
-      <article class="card">
-        <h2>Checklist</h2>
-        <p class="desc">Checklist app for Windows.</p>
-        <div class="meta">
-          <span>v1.2.5</span><span>2.15 MB</span>
+      <section class="category-block" data-category="Productivity" id="cat-Productivity">
+        <div class="category-head"><h3>Productivity</h3><span class="count">3</span></div>
+        <div class="catalog-grid">
+          <article class="app-card" data-title="Checklist" data-category="Productivity">
+            <div class="app-card-head">
+              <h4>Checklist</h4>
+              <span class="ver">v1.2.5</span>
+            </div>
+            <p class="app-desc">Desktop and laptop image deployment checklist for IT rollouts.</p>
+            <p class="app-meta">2.15 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/Checklist-releases/releases/download/v1.2.5/Checklist-Setup-1.2.5.exe">Download</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/Checklist-releases/releases">Releases</a>
+            </div>
+          </article>
+          <article class="app-card" data-title="LabelCreator" data-category="Productivity">
+            <div class="app-card-head">
+              <h4>LabelCreator</h4>
+              <span class="ver">v2.2.0</span>
+            </div>
+            <p class="app-desc">Tyco address label creator with branch catalogue and Excel shipping labels.</p>
+            <p class="app-meta">2.19 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/LabelCreator-releases/releases/download/v2.2.0/LabelCreator-Setup-2.2.0.exe">Download</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/LabelCreator-releases/releases">Releases</a>
+            </div>
+          </article>
+          <article class="app-card" data-title="OutClook" data-category="Productivity">
+            <div class="app-card-head">
+              <h4>OutClook</h4>
+              <span class="ver">v3.3.11</span>
+            </div>
+            <p class="app-desc">Outlook-style email client with IMAP/POP3, OAuth, calendar, and reminders.</p>
+            <p class="app-meta">54.89 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/OutClook-releases/releases/download/v3.3.11/OutClookSetup-3.3.11.exe">Download</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/OutClook-releases/releases">Releases</a>
+            </div>
+          </article>
         </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/Checklist-releases/releases/download/v1.2.5/Checklist-Setup-1.2.5.exe">Download</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/Checklist-releases/releases">Releases</a>
-        </div>
-      </article>
+      </section>
 
-      <article class="card">
-        <h2>LabelCreator</h2>
-        <p class="desc">Label creation tool.</p>
-        <div class="meta">
-          <span>v2.2.0</span><span>2.19 MB</span>
+      <section class="category-block" data-category="Utilities" id="cat-Utilities">
+        <div class="category-head"><h3>Utilities</h3><span class="count">2</span></div>
+        <div class="catalog-grid">
+          <article class="app-card" data-title="SuperUpdater" data-category="Utilities">
+            <div class="app-card-head">
+              <h4>SuperUpdater</h4>
+              <span class="ver">v1.6.5</span>
+            </div>
+            <p class="app-desc">Detect, update, and back up installed programs and drivers on Windows.</p>
+            <p class="app-meta">48.04 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/SuperUpdater-releases/releases/download/v1.6.5/SuperUpdater-Setup-1.6.5.exe">Download</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/SuperUpdater-releases/releases">Releases</a>
+            </div>
+          </article>
+          <article class="app-card" data-title="Speech To Text" data-category="Utilities">
+            <div class="app-card-head">
+              <h4>Speech To Text</h4>
+              <span class="ver">v2.6.1</span>
+            </div>
+            <p class="app-desc">Local Whisper speech recognition — hotkey, paste into any focused window.</p>
+            <p class="app-meta">47.35 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/SpeechToText-releases/releases/download/v2.6.1/SpeechToText-Setup-2.6.1.exe">Download</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/SpeechToText-releases/releases">Releases</a>
+            </div>
+          </article>
         </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/LabelCreator-releases/releases/download/v2.2.0/LabelCreator-Setup-2.2.0.exe">Download</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/LabelCreator-releases/releases">Releases</a>
-        </div>
-      </article>
+      </section>
 
-      <article class="card">
-        <h2>SuperUpdater</h2>
-        <p class="desc">Software updater utility.</p>
-        <div class="meta">
-          <span>v1.6.5</span><span>48.04 MB</span>
+      <section class="category-block" data-category="Communication" id="cat-Communication">
+        <div class="category-head"><h3>Communication</h3><span class="count">2</span></div>
+        <div class="catalog-grid">
+          <article class="app-card" data-title="Telegram Summarize" data-category="Communication">
+            <div class="app-card-head">
+              <h4>Telegram Summarize</h4>
+              <span class="ver">v2.7.2</span>
+            </div>
+            <p class="app-desc">AI-powered 24-hour Telegram group recap — paste summaries back into Telegram Desktop.</p>
+            <p class="app-meta">78.16 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/TelegramSummarize-releases/releases/download/v2.7.2/TelegramSummarize-Setup-2.7.2.exe">Download</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/TelegramSummarize-releases/releases">Releases</a>
+            </div>
+          </article>
+          <article class="app-card" data-title="Signal Summarize" data-category="Communication">
+            <div class="app-card-head">
+              <h4>Signal Summarize</h4>
+              <span class="ver">v1.0.1</span>
+            </div>
+            <p class="app-desc">Daily AI group recaps for Signal Desktop — reads your local encrypted database.</p>
+            <p class="app-meta">79.67 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/SignalSummarize-releases/releases/download/v1.0.1/SignalSummarize-Setup-1.0.1.exe">Download</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/SignalSummarize-releases/releases">Releases</a>
+            </div>
+          </article>
         </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/SuperUpdater-releases/releases/download/v1.6.5/SuperUpdater-Setup-1.6.5.exe">Download</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/SuperUpdater-releases/releases">Releases</a>
-        </div>
-      </article>
+      </section>
 
-      <article class="card">
-        <h2>Galgje</h2>
-        <p class="desc">Advanced Hangman for Windows.</p>
-        <div class="meta">
-          <span>v6.8.5</span><span>5.9 MB</span>
+      <section class="category-block" data-category="Games" id="cat-Games">
+        <div class="category-head"><h3>Games</h3><span class="count">3</span></div>
+        <div class="catalog-grid">
+          <article class="app-card" data-title="Galgje" data-category="Games">
+            <div class="app-card-head">
+              <h4>Galgje</h4>
+              <span class="ver">v6.8.5</span>
+            </div>
+            <p class="app-desc">Advanced Hangman for Windows — multiplayer, stats, timer, and clipboard integration.</p>
+            <p class="app-meta">5.9 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/Galgje-releases/releases/download/v6.8.5/GalgjeSetup_v6.8.5.exe">Download</a>
+              <a class="btn btn-ghost" href="https://azzkickah84.github.io/Galgje-releases/">Info</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/Galgje-releases/releases">Releases</a>
+            </div>
+          </article>
+          <article class="app-card" data-title="DOOM" data-category="Games">
+            <div class="app-card-head">
+              <h4>DOOM</h4>
+              <span class="ver">v3.0.7s</span>
+            </div>
+            <p class="app-desc">Classic DOOM for Windows with launcher, map editor, CTF, mouse-look, and CPU bots.</p>
+            <p class="app-meta">5.57 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/doom-press-release/releases/download/v3.0.7s/DOOM-Setup-3.0.7s.exe">Download</a>
+              <a class="btn btn-ghost" href="https://azzkickah84.github.io/doom-press-release/">Info</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/doom-press-release/releases">Releases</a>
+            </div>
+          </article>
+          <article class="app-card" data-title="DoomClon" data-category="Games">
+            <div class="app-card-head">
+              <h4>DoomClon</h4>
+              <span class="ver">v1.0.32</span>
+            </div>
+            <p class="app-desc">Minimal Doom WAD player — walk maps with classic software-style rendering.</p>
+            <p class="app-meta">187.24 MB</p>
+            <div class="app-actions">
+              <a class="btn btn-install" href="https://github.com/AzzKickah84/DoomClon-releases/releases/download/v1.0.32/DoomClon-1.0.32-Setup.exe">Download</a>
+              <a class="btn btn-ghost" href="https://github.com/AzzKickah84/DoomClon-releases/releases">Releases</a>
+            </div>
+          </article>
         </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/Galgje-releases/releases/download/v6.8.5/GalgjeSetup_v6.8.5.exe">Download</a>
-          <a class="btn btn-secondary" href="https://azzkickah84.github.io/Galgje-releases/">Info page</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/Galgje-releases/releases">Releases</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>DOOM</h2>
-        <p class="desc">DOOM for Windows (shareware).</p>
-        <div class="meta">
-          <span>v3.0.7s</span><span>5.57 MB</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/doom-press-release/releases/download/v3.0.7s/DOOM-Setup-3.0.7s.exe">Download</a>
-          <a class="btn btn-secondary" href="https://azzkickah84.github.io/doom-press-release/">Info page</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/doom-press-release/releases">Releases</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>DoomClon</h2>
-        <p class="desc">DOOM-style game.</p>
-        <div class="meta">
-          <span>v1.0.32</span><span>187.24 MB</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/DoomClon-releases/releases/download/v1.0.32/DoomClon-1.0.32-Setup.exe">Download</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/DoomClon-releases/releases">Releases</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>TelegramSummarize</h2>
-        <p class="desc">Telegram chat summarizer.</p>
-        <div class="meta">
-          <span>v2.7.2</span><span>78.16 MB</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/TelegramSummarize-releases/releases/download/v2.7.2/TelegramSummarize-Setup-2.7.2.exe">Download</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/TelegramSummarize-releases/releases">Releases</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>SignalSummarize</h2>
-        <p class="desc">Signal chat summarizer.</p>
-        <div class="meta">
-          <span>v1.0.1</span><span>79.67 MB</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/SignalSummarize-releases/releases/download/v1.0.1/SignalSummarize-Setup-1.0.1.exe">Download</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/SignalSummarize-releases/releases">Releases</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>OutClook</h2>
-        <p class="desc">Outlook-style email client.</p>
-        <div class="meta">
-          <span>v3.3.11</span><span>54.89 MB</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/OutClook-releases/releases/download/v3.3.11/OutClookSetup-3.3.11.exe">Download</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/OutClook-releases/releases">Releases</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>SpeechToText</h2>
-        <p class="desc">Speech-to-text utility.</p>
-        <div class="meta">
-          <span>v2.6.1</span><span>47.35 MB</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/AzzKickah84/SpeechToText-releases/releases/download/v2.6.1/SpeechToText-Setup-2.6.1.exe">Download</a>
-          <a class="btn btn-secondary" href="https://github.com/AzzKickah84/SpeechToText-releases/releases">Releases</a>
-        </div>
-      </article>
-
+      </section>
     </div>
-  </main>
 
-  <footer>
-    <p>Installers only — source code is not published on these release repositories.</p>
-    <p style="margin-top:0.5rem"><a href="https://github.com/AzzKickah84">github.com/AzzKickah84</a></p>
-    <div class="visitor-counter">
-      <a href="https://hits.sh/azzkickah84.github.io/">
-        <img src="https://hits.sh/azzkickah84.github.io.svg" alt="Visitor count">
-      </a>
-    </div>
-  </footer>
+    <footer class="site-footer">
+      <p>Installers only — source code is not published on these release repositories.</p>
+      <p><a href="https://github.com/AzzKickah84">github.com/AzzKickah84</a></p>
+      <div class="visitor-counter">
+        <a href="https://hits.sh/azzkickah84.github.io/">
+          <img src="https://hits.sh/azzkickah84.github.io.svg" alt="Visitor count">
+        </a>
+      </div>
+    </footer>
+  </div>
+  <script src="assets/site.js"></script>
 </body>
 </html>
