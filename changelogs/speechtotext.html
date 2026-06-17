@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech To Text - Changelog</title>
+  <link rel="stylesheet" href="../assets/site.css?v=4">
+  <style>
+    body { padding: 1.5rem 2rem 3rem; }
+    .changelog-wrap { max-width: 760px; margin: 0 auto; }
+    pre { white-space: pre-wrap; font-family: inherit; line-height: 1.55; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+    .breadcrumb { margin-bottom: 1rem; font-size: 0.82rem; color: var(--muted); }
+    .breadcrumb a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="changelog-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Downloads</a> / Speech To Text changelog</nav>
+    <h1>Speech To Text</h1>
+    <pre># Changelog
+
+All notable changes to Speech To Text are documented here. Version numbers match the app window title and EXE file properties.
+
+**When publishing a new build:** bump the version in `SpeechToText.App.csproj`, add an entry below (newest first) with date/time and a short list of changes, then update the version line in `README.md`.
+
+## [2.6.1] — 2026-06-16
+
+- **Release:** Programming Workshop batch release with Windows installer, press release, and changelog packaging.
+- **Metadata:** Version synchronized across csproj, Inno Setup, and release folder.
+
+## [2.6.0] — 2026-05-30 03:00
+
+- **Better accuracy:** The committed (pasted) text is now produced with **beam-search decoding** (whisper.cpp&#39;s higher-quality mode) instead of greedy decoding. The fast on-screen live preview still uses greedy for snappiness.
+- **Add:** A **&quot;Most accurate&quot;** quality option using the Whisper **medium** model (~1.5 GB, one-time download). Choose it in the Quality dropdown for noticeably better recognition at the cost of speed. &quot;Accurate&quot; (small) remains the default.
+- Tip: if recognition is poor, also set the correct **Spoken language** instead of Auto-detect — auto-detection on short phrases is less reliable.
+
+## [2.5.0] — 2026-05-30 02:45
+
+- **Much lower latency:** Phrases now commit ~130 ms sooner after you pause (end-of-speech wait 380 ms → 250 ms), and the commit no longer waits for the room to go near-silent — a slightly noisy environment no longer stalls the paste.
+- **Faster transcription:** Whisper now uses nearly all CPU cores (was half), which is the biggest single speed-up; recognized text reaches the field much faster.
+- **Snappier live preview:** On-screen preview updates ~every 250 ms (was 650 ms) and reacts after ~0.3 s of new speech (was ~0.5 s); audio is captured in 20 ms blocks (was 40 ms).
+- The accurate model is still used for the text that&#39;s pasted; each recognized phrase is placed on the clipboard and pasted into the active field as before.
+- Trimmed paste-path delays for quicker insertion.
+
+## [2.4.5] — 2026-05-30 02:35
+
+- **Cleanup:** Removed a large amount of unused/dead code — an obsolete window-activation and UI-Automation injection subsystem (`AutomationInjector`, `InjectionTargetGuard`) plus several unreachable `NativeMethods` helpers, constants, and P/Invoke declarations. No behavior change; the active paste path is unaffected.
+- **Optimize:** Microphone-level (RMS) calculation now uses a span-based loop instead of per-sample `BitConverter` calls; &quot;any microphone present&quot; check no longer enumerates every device. Removed unused `using` directives.
+- Functionality is identical to 2.4.4 — this is an internal optimization/cleanup release.
+
+## [2.4.4] — 2026-05-30 02:25
+
+- **Fix:** The in-app transcript box no longer appears to refresh/replace while you speak. The live preview now transcribes the whole current sentence (instead of a rolling ~3-second tail), so on-screen text grows and recognized sentences clearly append to what&#39;s already there.
+- Only the latest recognized sentence is pasted into the receiving app (unchanged).
+
+## [2.4.3] — 2026-05-30 02:15
+
+- **Fix:** Auto-paste no longer overwrites existing text in fields that select-all on focus (address/search/chat boxes) — the selection is collapsed to the end before pasting so new speech is appended.
+- **Change:** The clipboard is now simply replaced with the latest recognized phrase each time (the previous &quot;restore your old clipboard&quot; behavior was removed).
+- The in-app transcript box continues to accumulate the whole session.
+
+## [2.4.2] — 2026-05-30 02:05
+
+- **Fix:** Dictation no longer wipes your clipboard — whatever you had copied is restored after each phrase is pasted, and the recognized text is not left on the clipboard.
+- **Fix:** Auto-paste into standard text fields now appends after existing text instead of replacing it; removed a redundant double-insert that could clobber previously dictated text.
+
+## [2.4.1] — 2026-05-29 23:45
+
+- **Fix:** Transcript is no longer cleared when you start listening again — text accumulates for the whole session.
+- **Add:** **Clear** link to empty the transcript when you choose to.
+- **Change:** Faster live preview (~650 ms) using a lightweight fast model for on-screen updates; accurate model still used for pasted text.
+- **Change:** Live preview uses only the last few seconds of audio so updates feel snappier.
+- **Change:** Long pauses no longer force a phrase cut every 20 seconds (max phrase length raised to 5 minutes).
+
+## [2.4.0] — 2026-05-29 23:30
+
+- **Add:** Live transcript preview while you speak — words update in the app about every second, with a &quot;…&quot; suffix until the phrase is finalized.
+- **Change:** Faster phrase detection (shorter pause before text is pasted).
+- **Change:** Words appear segment-by-segment during transcription instead of all at once.
+
+## [2.3.5] — 2026-05-29 23:15
+
+- **Fix:** Changing the microphone no longer crashes the app — microphone selection no longer disposes the Whisper engine (only used when listening starts).
+
+## [2.3.4] — 2026-05-29 23:00
+
+- **Add:** Microphone dropdown — choose which input device to use for listening; selection is saved and applied on the next listen.
+
+## [2.3.3] — 2026-05-29 22:45
+
+- **Change:** &quot;Copy transcript&quot; link is blue by default.
+
+## [2.3.2] — 2026-05-29 22:30
+
+- **Fix:** App crashed on startup after installation — window icon is now embedded in the EXE instead of requiring `app.ico` beside it.
+
+## [2.3.1] — 2026-05-29 22:00
+
+- **Add:** Application icon (microphone / speech waves) on the window, taskbar, and setup program.
+- **Fix:** Window appears on the taskbar while running (`ToolWindow` style removed).
+
+## [2.3.0] — 2026-05-29 21:35
+
+- **Add:** Windows setup wizard (`SpeechToText-Setup-2.3.0.exe`) built with Inno Setup — installs to Program Files, Start menu shortcut, optional desktop icon, and uninstall entry in Settings → Apps.
+- **Add:** `build-installer.ps1` script and `installer\` folder (license, readme, Inno Setup script).
+- **Add:** Assembly metadata — publisher **Thijs Boekholt**, product name, copyright.
+
+## [2.2.7] — 2026-05-29 21:25
+
+- **Fix:** Auto-paste inserts only the latest recognized phrase, not the full session transcript.
+
+## [2.2.6] — 2026-05-29 21:20
+
+- **Fix:** Ctrl+V is sent in separate steps (Ctrl down → V → Ctrl up) so the modifier is held — the previous single-batch `SendInput` only typed the letter &quot;v&quot;.
+- **Fix:** Tries `WM_PASTE` and direct text insertion before simulating the keyboard.
+
+## [2.2.5] — 2026-05-29 21:15
+
+- **Fix:** Corrected the Win32 `INPUT` struct layout on 64-bit Windows — `SendInput` was silently failing (returning 0), so simulated Ctrl+V never reached the target app.
+- **Fix:** Paste target is locked when you start listening (hotkey or Listen), not re-detected after transcription.
+- **Fix:** Paste runs on the UI thread; added `keybd_event` fallback when `SendInput` is blocked.
+
+## [2.2.4] — 2026-05-29 21:10
+
+- **Fix:** Clipboard is set with `Clipboard.SetText` instead of SelectAll/Copy, so the target app keeps focus (SelectAll was stealing focus before paste).
+- **Fix:** If the target still has focus, paste immediately with Ctrl+V — no window switching needed.
+- **Fix:** Fallback sends Ctrl+V twice when the first attempt is blocked.
+
+## [2.2.3] — 2026-05-29 21:05
+
+- **Fix:** Auto-paste waits 250 ms after copying, then retries paste up to **3 times** (200 ms apart).
+- **Fix:** `Clipboard.Flush()` after copy so clipboard data survives the focus switch.
+- **Fix:** Each paste attempt uses Alt-tap, foreground restore, `WM_PASTE`, and double Ctrl+V.
+
+## [2.2.2] — 2026-05-29 21:00
+
+- **Fix:** Auto-paste now mirrors the working manual flow: append to transcript → **Copy** (same as the link) → paste to the window that had focus when recognition finished.
+- **Fix:** Target window/focus is captured **before** updating the app UI, so copying in the app no longer loses the paste destination.
+
+## [2.2.1] — 2026-05-29 20:55
+
+- **Fix:** Auto-paste no longer relies on bare `SendInput` from a background thread (Windows blocks that). It now finds the **foreground window’s focused field** and pastes via `WM_PASTE`, then Ctrl+V with thread attach.
+- **Fix:** Clearer status when Speech To Text itself has focus instead of your text field.
+
+## [2.2.0] — 2026-05-29 20:50
+
+- **Change:** Simplified injection — recognized text is copied to the clipboard and **Ctrl+V is sent to whatever has focus** at paste time. No target locking, no window activation, no UI Automation.
+- **Change:** Removed “transcript only” / “not a text field” blocking — keep focus in your app while speaking and text pastes there.
+
+## [2.1.7] — 2026-05-29 20:45
+
+- **Fix:** File Explorer **address bar** is now recognized as a valid text target (UI Automation, not just the file list).
+- **Fix:** Stronger paste activation for Word, browsers, WhatsApp, and Signal (minimize speech app, Alt tap, thread attach, UIA focus on stored field).
+- **Fix:** Stored UI Automation element is searched across the target process for reliable re-focus in modern apps.
+
+## [2.1.6] — 2026-05-29 20:42
+
+- **Fix:** Target is frozen when listening starts — clicking File Explorer (or other windows) while transcribing no longer redirects paste.
+- **Fix:** Block injection into File Explorer file lists, desktop, and other non-text targets (prevents accidental file rename dialogs).
+- **Fix:** Unsafe targets show “transcript only” instead of pasting into the wrong place.
+
+## [2.1.5] — 2026-05-29 20:39
+
+- **Fix:** Target field is now stored with a UI Automation identity so WhatsApp, Signal, browsers, and Office apps can be found again at paste time.
+- **Fix:** Injection only reports success when the target window was actually activated; failed pastes show “Could not type into …”.
+- **Fix:** Filter Whisper `[BLANK_AUDIO]` markers from recognized text (silence/noise segments).
+- **Fix:** Stronger window activation for keyboard paste (thread attach + focus on locked field).
+
+## [2.1.4] — 2026-05-29 20:36
+
+- **Fix:** Injection no longer reports success when silent paste did nothing (Word, Outlook, browsers, WhatsApp, Signal, etc.).
+- **Fix:** Restored keyboard paste fallback using the **locked focus handle** captured at hotkey/listen time (avoids pasting into a search box).
+- **Fix:** UI Automation now tries Value, Legacy, and Text patterns for modern edit controls.
+- **Fix:** Target focus capture uses UI Automation for more accurate field handles in Chromium/Electron apps.
+
+## [2.1.3] — 2026-05-29 20:33
+
+- **Fix:** “No target window” when using **Listen** — the app now remembers the last external window you focused (e.g. Notepad, Word) instead of treating Speech To Text itself as the target.
+- **Fix:** Hotkey uses the foreground window captured at the moment **Ctrl+Shift+Space** was pressed.
+
+## [2.1.2] — 2026-05-29 20:30
+
+- **Fix:** Published build includes the Whisper native `runtimes` folder again (fixes “Native Library not found” at startup).
+- **Fix:** Publish settings keep native DLLs beside the EXE instead of bundling them into the single file.
+
+## [2.1.1] — 2026-05-29 20:27
+
+- **Fix:** Text injection no longer activates the target window or calls `SetFocus`, so focus is not stolen to a search box or other default control.
+- **Fix:** Paste uses only silent paths: `EM_REPLACESEL`, `WM_PASTE`, `WM_CHAR`, and UI Automation on the locked focus handle.
+- **Fix:** Target focus is resolved from the target app’s thread (or the handle captured at hotkey time), not by re-querying the foreground window at paste time.
+
+## [2.1.0] — 2026-05-29 20:24
+
+- **Fix:** Paste runs synchronously after each phrase so status is not overwritten by “Listening…” before inject finishes.
+- **Fix:** Status line no longer hides paste errors (speech engine no longer forces “Listening…” over inject result).
+- **Fix:** Injection tries, in order: direct edit insert, UI Automation (including child controls), attached SetFocus + Ctrl+V, then `SwitchToThisWindow` + Ctrl+V.
+- **Fix:** Hotkey grants foreground permission to the target app and locks window + focus handles.
+- **Fix:** “Copy transcript” uses `SelectAll` + `Copy` so the full text box is copied.
+
+## [2.0.9] — 2026-05-29 20:21
+
+- **Fix:** Ctrl+V now runs **while still attached** to the target app’s thread (previously focus was restored then detached before paste, so keystrokes went nowhere).
+- **Fix:** Hotkey captures the foreground window in `WndProc` before the app handles the key press.
+- **Fix:** Clipboard paste is the primary injection path; edit/UI Automation/Unicode are fallbacks only.
+- **Fix:** “Copy transcript” copies the full text box contents (`TranscriptTextBox.Text`), not a separate buffer.
+
+## [2.0.8] — 2026-05-29 20:18
+
+- **Fix:** Text injection now runs on a dedicated **STA thread** (SendInput and clipboard require this; MTA pool threads silently failed).
+- **Fix:** Lock injection target to the window/focus captured when listening starts.
+- **Fix:** Multi-strategy paste: direct Win32 insert, UI Automation, then clipboard + Ctrl+V.
+- **Add:** Transcript area is a selectable read-only text box.
+- **Add:** “Copy transcript” link below the transcript area.
+
+## [2.0.7] — 2026-05-29 20:15
+
+- **Fix:** Text injection runs immediately on a background thread before any UI update, so the app window no longer steals focus before paste.
+- **Fix:** Capture both the target window and the focused control handle at recognition time.
+- **Fix:** Multi-method injection: direct edit replacement (`EM_REPLACESEL`), Ctrl+V, and `WM_PASTE`.
+- **Fix:** Keep the Speech To Text window shown without activation during paste (`SW_SHOWNOACTIVATE`).
+- **Change:** Speech engine errors no longer stop listening for non-fatal paste failures.
+
+## [2.0.6] — 2026-05-29 20:12
+
+- **Fix:** Cross-thread crash — *&quot;The calling thread cannot access this object because a different thread owns it.&quot;*
+- **Fix:** Cache the app window handle at startup; recognition thread uses Win32 calls only (no WPF objects).
+- **Fix:** Prevents the error dialog from stopping listening after each recognized phrase.
+
+## [2.0.5] — 2026-05-29 20:09
+
+- **Fix:** Rewrote text injection — Win32 clipboard, `AttachThreadInput`, focus restore, background-thread paste.
+- **Fix:** Capture foreground window on the recognition thread before UI dispatch.
+- **Change:** Status line shows target app name when paste fails.
+- **Bug:** Introduced cross-thread WPF access (fixed in 2.0.6).
+
+## [2.0.4] — 2026-05-29 20:06
+
+- **Fix:** Improved paste targeting for File Explorer, WhatsApp, Signal, and other apps.
+- **Fix:** Prefer foreground window at paste time; restore focus after clipboard copy.
+- **Fix:** Disable always-on-top while listening.
+
+## [2.0.3] — 2026-05-29 20:03
+
+- **Fix:** ComboBox closed state uses dark background (readable selected text in the box).
+- **Fix:** Custom ComboBox control template with explicit dark chrome.
+
+## [2.0.2] — 2026-05-29 20:00
+
+- **Fix:** Copyright and version info aligned on one footer row.
+- **Fix:** ComboBox dropdown list readability (dark theme item styles).
+- **Fix:** Custom item template for selected text in dropdown.
+
+## [2.0.1] — 2026-05-29 19:57
+
+- **Add:** Copyright notice — *(C) Thijs Boekholt - 2026* in footer.
+- **Fix:** ComboBox dropdown text color for dark theme.
+
+## [2.0.0] — 2026-05-29 19:54
+
+- **Add:** Version numbering in project, window title, and footer.
+- **Change:** Replaced Windows `System.Speech` with local **Whisper** recognition (much more accurate).
+- **Add:** Language and quality (accurate/fast) settings.
+- **Add:** Resizable window with scrollable transcript area.
+- **Add:** One-time Whisper model download on first run.
+
+## [1.1.0] — 2026-05-29 19:48
+
+- **Fix:** Text injection via `WM_PASTE` to target window focus control.
+- **Fix:** Fallback foreground activation + `SendInput` Ctrl+V.
+- **Fix:** Disable always-on-top while listening.
+- **Fix:** Removed overly strict speech confidence filter.
+- **Fix:** Improved speech engine language selection.
+
+## [1.0.0] — 2026-05-29 (initial)
+
+- **Add:** Compact always-on-top status window.
+- **Add:** Global hotkey **Ctrl+Shift+Space** to start/stop listening.
+- **Add:** Listen button to capture target window and start dictation.
+- **Add:** Windows `System.Speech` dictation with clipboard paste injection.
+- **Add:** Self-contained publishable EXE for Windows x64.
+</pre>
+  </div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galgje - Changelog</title>
+  <link rel="stylesheet" href="../assets/site.css?v=4">
+  <style>
+    body { padding: 1.5rem 2rem 3rem; }
+    .changelog-wrap { max-width: 760px; margin: 0 auto; }
+    pre { white-space: pre-wrap; font-family: inherit; line-height: 1.55; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+    .breadcrumb { margin-bottom: 1rem; font-size: 0.82rem; color: var(--muted); }
+    .breadcrumb a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="changelog-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Downloads</a> / Galgje changelog</nav>
+    <h1>Galgje</h1>
+    <pre># Changelog
+
+All notable changes to Galgje (Hangman) are documented in this file.
+
+## [6.8.6] - 2026-06-17
+
+### Added
+- **Menu bar icons** using Segoe MDL2 Assets glyphs on all menu items
+- **English word list** (`english_wordlist.txt`) for playing with English random words (bundled offline + online fallback)
+- **Word list language** setting — choose Dutch (OpenTaal) or English words independently from the interface language
+- **View menu** submenus for interface language and word list language (with checkmarks)
+- **Copy Achievements Report** in the Edit menu
+
+### Changed
+- **About dialog** redesigned with app icon, feature list, and interface/word-list language display
+- **Settings dialog** — separate controls for interface language and word list language
+- Version bumped to **6.8.6**
+
+## [6.8.5] - 2026-06-17
+
+### Added
+- **Classic menu bar** with Game, Edit, Players, View, Tools, and Help menus (keyboard shortcuts included)
+- **Settings dialog** (Tools → Settings) with General, Timer, Sound, and Display tabs
+- **About dialog** (Help → About Galgje)
+- **Persistent game settings** saved to `%LocalAppData%\Galgje\game_settings.ini` (language, sound, timer defaults, hoster name, and more)
+- **Menu Bar Edition installer track** — `GalgjeSetup_MenuBar_v6.8.5-menu.1.exe` via `build-release-menubar.ps1` (separate AppId and installer version from the standard setup)
+
+### Changed
+- Version bumped to **6.8.5** across application and standard Inno Setup
+- Timer bonus/penalty and default duration are now configurable in Settings
+
+## [6.8.4] - 2026-06-16
+
+### Added
+- Programming Workshop batch release packaging (installer + press release + changelog in Releases folder)
+
+### Changed
+- Version bumped to 6.8.4 across csproj and Inno Setup
+
+## [6.8.3] - 2026-06-15
+
+### Added
+- **GitHub download page** at [AzzKickah84/Galgje-releases](https://github.com/AzzKickah84/Galgje-releases) - public installer only, no source code
+- **Visual stats-import guide** in `manual.html` with screenshots, Windows-style copy walkthrough, and one-click file templates
+- **Game Log tab** documentation screenshot (`game-log-tab.png`)
+- **`website/publish-github-releases.ps1`** - publishes installer and manual assets to GitHub after each build
+
+### Changed
+- **`manual.html`** - redesigned &quot;Import Your Own Stats&quot; section; fixed garbled dash characters (`&#226;€&quot;`) by using ASCII punctuation
+- **Primary download URL** now GitHub Releases; NAS/FTP links remain as mirrors
+- Version bumped to **v6.8.3** across application, installer, website, and documentation
+
+---
+
+## [6.8.2] - 2026-06-15
+
+### Added
+- **v6.8.2 release package** with updated installer, press release, manual, and changelog
+- Public download at **http://62.45.220.99/GalgjeHangman/GalgjeSetup_v6.8.2.exe** (auto-deployed to NAS on build)
+
+### Changed
+- **`press-release.html`** updated for v6.8.2 with complete feature overview and download links
+- **`manual.html`** updated for v6.8.2 install and stats-import instructions
+- Version bumped to **v6.8.2** across application, installer, website, and documentation
+
+---
+
+## [6.8.1] - 2026-06-15
+
+### Added
+- **Prominent User Manual shortcuts** in Start Menu and optional Desktop shortcut (enabled by default) titled &quot;User Manual - Import Your Own Stats&quot;
+- Post-install reminder pointing users to the manual for statistics import
+- Optional **&quot;Open User Manual&quot;** checkbox on the installer&#39;s finish page
+- Public download at **http://62.45.220.99/GalgjeHangman/GalgjeSetup_v6.8.1.exe**
+
+### Changed
+- **`press-release.html`** fully refreshed with complete feature overview and download links
+- **`manual.html`** updated for installer shortcuts and stats-import workflow
+- Installer publisher URL set to official download page
+- Version bumped to **v6.8.1** across application, installer, website, and documentation
+
+---
+
+## [6.8.0] - 2025-06-15
+
+### Added
+- **`example-data\` folder** in the install package with sample statistics, played words, notes, and game log
+- **Manual section** — &quot;Replacing Stats &amp; Data Files with Your Own&quot; with step-by-step instructions and file format reference
+- **Download website** — `prepare-website.ps1`, `deploy-website.ps1`, and `website/` for hosting at `62.45.220.99/GalgjeHangman`
+- Start Menu shortcuts for **Changelog** and **Example Stats (Read Me)**
+
+### Changed
+- **`manual.html`** updated with example-data location and stats replacement workflow
+- **`press-release.html`** download link points to public URL
+- Version bumped to **v6.8.0** across application, installer, and documentation
+
+---
+
+## [6.7.0] - 2025-06-15
+
+### Added
+- **Real game screenshots** in `manual.html` and `press-release.html` (main window, Word Display, statistics, players, notes, played words)
+- `--capture-docs` command-line mode and `capture-screenshots.ps1` to regenerate screenshots from the live UI
+- Screenshots bundled in the Windows installer under `screenshots\`
+- Consolidated **v6.7 release package** with installer, full HTML manual, press release, and changelog
+- Start Menu shortcuts: Galgje, User Manual, Press Release
+
+### Changed
+- **`manual.html`** refreshed — complete operation guide with UI map, timer rules, stats, notes, achievements, data locations, and button reference
+- **`press-release.html`** updated for v6.7 with full feature overview
+- Version bumped to **v6.7.0** across application, installer, and documentation
+
+### Fixed
+- Automatic migration of statistics/logs from the install folder to `%LocalAppData%\Galgje` on startup
+- Random Word works offline via bundled OpenTaal word list; cache stored in AppData
+- User data (stats, logs, notes, achievements) correctly stored outside Program Files
+
+---
+
+## [6.6.1] - 2025-06-15
+
+### Fixed
+- Statistics and log files placed in the install folder (`Program Files\Galgje`) are now automatically migrated to `%LocalAppData%\Galgje` on startup
+- Empty AppData files created on first run no longer block import of existing data from the install directory
+
+---
+
+## [6.6.0] - 2025-06-15
+
+### Added
+- **`manual.html`** — extensive HTML user manual with sidebar navigation, UI map, step-by-step guides, button reference, and troubleshooting
+- Updated **`press-release.html`** for v6.6 with manual and offline word list highlights
+- Start Menu shortcuts for User Manual and Press Release (installed alongside the game)
+- Documentation files bundled in the Windows installer
+
+### Changed
+- Version bumped to **v6.6.0**
+- Build script reads version dynamically from the project file
+- README updated with v6.6 install instructions and manual reference
+
+---
+
+## [6.5.1] - 2025-06-15
+
+### Fixed
+- Random Word failing after installation to Program Files (word list cache now stored in `%LocalAppData%\Galgje`)
+- Downloaded word lists work even when the install folder is read-only
+- User data files (logs, stats, notes, achievements) moved to `%LocalAppData%\Galgje` for installed setups
+- New Game incorrectly showing &quot;Could not fetch random word&quot; when achievements failed to initialize
+- Achievements initialize independently of optional metrics subsystem
+
+---
+
+## [6.5.0] - 2025-06-15
+
+### Added
+- Official Windows installer (`GalgjeSetup_v6.5.exe`) built with Inno Setup
+- Start Menu and optional Desktop shortcuts with game icon
+- `.NET 8 Desktop Runtime` prerequisite check during installation
+- `CHANGELOG.md` for structured release notes
+- Press release HTML with full feature overview
+- `bingbing.wav` victory sound included in the published build output
+
+### Changed
+- Version bumped to **v6.5.0** across assembly metadata, UI, and documentation
+- README updated to reflect achievements system, installer-based setup, and current feature set
+- Version fallbacks in source code aligned to v6.5.0
+
+### Fixed
+- Stale version references in documentation (previously stuck at v6.1.4)
+- Sound assets now consistently deployed alongside the executable
+
+---
+
+## [6.3.0] - 2025
+
+### Added
+- Assembly version alignment and product metadata refresh
+
+### Changed
+- Improved version string handling for Word Display screenshots
+
+---
+
+## [6.1.5] - 2024
+
+### Added
+- Optional game metrics telemetry with PHP dashboard backend
+- `MetricsCollector` and `MetricsTransmitter` for session analytics
+- Privacy-aware player anonymization in metrics payloads
+
+---
+
+## [6.1.4] - 2024
+
+### Added
+- Advanced statistics backup and reset functionality
+- Enhanced clipboard integration with formatted game summaries
+- Nullable reference type safety across the codebase
+
+### Changed
+- Improved player statistics persistence and export options
+
+---
+
+## [6.1.0] - 2024
+
+### Added
+- Player achievements system with 15+ unlockable badges
+- Achievement tracking for streaks, milestones, and rare feats
+- Persistent `player_achievements.json` storage
+- Readable achievement report export
+
+---
+
+## [6.0.26] - 2024
+
+### Added
+- DataGridView player list with sortable real-time columns
+- Live UI synchronization across main window and Word Display
+
+### Changed
+- Improved timer system with color-coded urgency states
+
+---
+
+## [6.0.21] - 2024
+
+### Added
+- 5-minute countdown timer with bonus/penalty adjustments
+- Comprehensive player statistics with performance graphs
+- Modern dark UI theme with Windows ME-inspired accents
+- Word Display secondary window with player cards and hangman overview
+
+---
+
+## [4.0.0] - 2023
+
+### Added
+- Unlimited local multiplayer support
+- Player elimination and winner marking
+- Persistent player statistics logging
+- Game event log with timestamps
+
+---
+
+## [1.0.0] - Initial Release
+
+### Added
+- Classic hangman gameplay for Windows
+- Custom word entry and visual hangman drawing
+- Basic game logging
+</pre>
+  </div>
+</body>
+</html>

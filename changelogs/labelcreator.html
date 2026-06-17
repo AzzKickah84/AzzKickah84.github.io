@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabelCreator - Changelog</title>
+  <link rel="stylesheet" href="../assets/site.css?v=4">
+  <style>
+    body { padding: 1.5rem 2rem 3rem; }
+    .changelog-wrap { max-width: 760px; margin: 0 auto; }
+    pre { white-space: pre-wrap; font-family: inherit; line-height: 1.55; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+    .breadcrumb { margin-bottom: 1rem; font-size: 0.82rem; color: var(--muted); }
+    .breadcrumb a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="changelog-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Downloads</a> / LabelCreator changelog</nav>
+    <h1>LabelCreator</h1>
+    <pre># Changelog
+
+All notable changes to **Label Creator** are documented in this file.
+
+## [2.2.0] — 2026-06-16
+
+### Added
+- Central branch address catalogue (`BranchCatalog`) for all 21 supported offices.
+- Dedicated input validation with clearer, field-specific error messages.
+- `CHANGELOG.md` and press-release HTML bundled with releases.
+- Installer now includes the changelog in the application folder.
+
+### Improved
+- Refactored Excel automation with consistent COM cleanup to reduce orphaned Excel processes.
+- Shipping-label and battery-form printing share the same branch-mapping logic.
+- Form reset now restores copy count, branch selection, and control states correctly.
+- Attendant name stays in sync when &quot;Same as attendant&quot; is checked while typing.
+- Window title shows the installed version number.
+- Custom shipment type validation before printing.
+- Battery-form printing validates branch and recipient before starting Excel.
+
+### Fixed
+- Battery-form button used control enabled-state instead of the alternate-address checkbox.
+- Label copy loop and shipment-type handling are more robust.
+- Dangerous-goods sticker image is disposed correctly after printing.
+
+## [2.1.0] — 2026-06-16
+
+### Added
+- Version numbering via `Version.props` (single source of truth).
+- Windows installer built with Inno Setup (`LabelCreator-Setup-x.y.z.exe`).
+- `AppPaths` and `ExcelHelper` modules for file paths and Excel lifecycle.
+- `App.config` targeting .NET Framework 4.8.
+- Build scripts: `setup.ps1` and `build-installer.ps1`.
+
+### Improved
+- Upgraded from .NET Framework 3.5 to 4.8 for modern Windows compatibility.
+- Removed unused `AIPanel` dependency and legacy ClickOnce signing.
+- Optional Aero glass via DWM with graceful fallback on newer Windows.
+- Runtime data files (Excel templates, sticker image, icon) copied automatically on build.
+
+## [2.0.0] — 2010
+
+### Added
+- Initial release: **Tyco Address Label Creator v2**.
+- Shipping label printing for 21 European Tyco branch offices.
+- Alternate recipient address support.
+- Shipment types: Next day, UPS/TNT/DHL, weekly shipment, custom text.
+- Dangerous goods (battery) label printing.
+- Battery transport form printing via Excel template.
+- Windows Vista/7 Aero glass user interface.
+
+---
+
+Copyright &#169; Thijs Boekholt
+</pre>
+  </div>
+</body>
+</html>

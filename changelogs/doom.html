@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOOM Windows Port - Changelog</title>
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --panel: #2b2b2b;
+      --text: #e8e8e8;
+      --muted: #a0a0a0;
+      --accent: #b30000;
+      --border: #444;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      background: linear-gradient(180deg, #3a0000 0%, #1a1a1a 100%);
+      border-bottom: 2px solid var(--accent);
+      padding: 24px 32px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .subtitle { color: var(--muted); margin: 0; }
+    main { max-width: 900px; margin: 0 auto; padding: 24px 32px 48px; }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .release-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 16px 20px;
+      background: #222;
+      border-bottom: 1px solid var(--border);
+    }
+    .version {
+      color: #ff6666;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .date { color: var(--muted); font-size: 0.95rem; }
+    .release-body { padding: 16px 20px 20px; }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: #ff9999;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    h2:not(:first-child) { margin-top: 18px; }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    code {
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 0.92em;
+    }
+    footer {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DOOM Windows Port</h1>
+    <p class="subtitle">Changelog &mdash; current release <strong>3.0.7</strong> &mdash; port by Thijs Boekholt</p>
+  </header>
+
+  <main>
+    <section>
+      <div class="release-header">
+        <span class="version">Version 3.0.7</span>
+        <span class="date">13 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>Launcher readability</strong> &mdash; section and tab labels use brighter cream text on the brown panels instead of hard-to-read gold. IWAD/PWAD headers use clean Segoe UI bold rather than scaled STCFN glyphs.</li>
+          <li><strong>Original DOOM logo</strong> &mdash; the header now shows the classic M_DOOM menu logo (<code>assets/doom-logo.png</code>) beside the LAUNCHER title.</li>
+        </ul>
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Launcher overlapping text</strong> &mdash; header logo, LAUNCHER title, and version/copyright no longer collide; IWAD/PWAD labels are single Win32 controls instead of double-painted WAD font overlays.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Full installer: <code>DOOM-Setup-3.0.7.exe</code> (all WADs from the build folder).</li>
+          <li>Shareware installer: <code>DOOM-Setup-3.0.7s.exe</code> (doom1.wad only).</li>
+          <li>Windows file version metadata bumped to 3.0.7 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 3.0.6</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li><strong>In-game score overlay</strong> &mdash; hold the <code>`</code> key (default) during deathmatch or co-op to show live standings: frag matrix or totals in deathmatch, kills/items/secrets per player in co-op. Rebind under Options &rarr; Setup &rarr; Controls &rarr; SHOW SCORES; saved as <code>key_scores</code> in your config.</li>
+        </ul>
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Deathmatch map items in bot DM</strong> &mdash; weapons and pickups placed with the WAD editor&rsquo;s multiplayer/deathmatch-only flag (thing options bit 16) now spawn in offline VS CPU deathmatch. Previously they were skipped because <code>netgame</code> is false for local bot games even when <code>deathmatch</code> is active.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Full installer: <code>DOOM-Setup-3.0.6.exe</code> (all WADs from the build folder).</li>
+          <li>Shareware installer: <code>DOOM-Setup-3.0.6s.exe</code> (doom1.wad only).</li>
+          <li>Windows file version metadata bumped to 3.0.6 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 3.0.5</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>CPU bot deathmatch damage</strong> &mdash; the first CPU opponent (player 2, green marine) could not hurt you in deathmatch because the mind-control ally flag shared the same mobj bit as player colour translation. Bots now deal full damage in VS CPU deathmatch.</li>
+          <li><strong>Press-release screenshots</strong> &mdash; in-game and main-menu captures were saved under swapped filenames; image files and page markup now match their labels.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Full installer: <code>DOOM-Setup-3.0.5.exe</code> (all WADs from the build folder).</li>
+          <li>Shareware installer: <code>DOOM-Setup-3.0.5s.exe</code> (doom1.wad only).</li>
+          <li>Windows file version metadata bumped to 3.0.5 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 3.0.4</span>
+        <span class="date">14 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Main menu layout</strong> &mdash; redesigned as a two-column grid so every item is visible, including Quit Game. Nine entries (New Game, Options, Load/Save, Record/Play Demo, VS CPU, Read This, Quit) no longer overflow the 320&times;200 screen; skull cursor, keyboard, and mouse navigation follow the new layout.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>Main menu navigation</strong> &mdash; Up/Down moves within a column; Left/Right jumps between columns on the same row. Port credit line sits below the menu grid.</li>
+          <li><strong>Public download</strong> &mdash; press release and installer hosted on GitHub Pages with a direct download link.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-3.0.4.exe</code>.</li>
+          <li>Windows file version metadata bumped to 3.0.4 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 3.0.3</span>
+        <span class="date">14 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>New</h2>
+        <ul>
+          <li><strong>Classic DOS startup console</strong> &mdash; while the game loads, a DOS-style text window shows the original startup banner and subsystem init lines (<code>V_Init</code>, <code>Z_Init: Init zone memory allocation daemon</code>, <code>R_Init: Init DOOM refresh daemon</code>, and the rest). Closes when the game window opens; stays open with <code>-devparm</code> or <code>-console</code>; disable with <code>-noconsole</code>.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>DOOM Forge 3.1</strong> &mdash; live sector fill tinted from floor textures; undo/redo (32 steps, Ctrl+Z/Y); texture search (Ctrl+F); thing rotation (Q/E and mouse wheel); upper/mid/lower wall texture slots; sector and vertex delete; automatic two-sided lines on shared boundaries; map lump rename (F2); unsaved-changes prompt; Test in DOOM uses the correct <code>-warp</code> from the lump name.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-3.0.3.exe</code>.</li>
+          <li>Windows file version metadata bumped to 3.0.3 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 3.0.2</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Launcher game options</strong> &mdash; duplicate Windows control IDs broke No Monsters, Respawn, and Fast Monsters checkboxes; episode/map spin controls now use separate IDs so launch arguments match the UI.</li>
+          <li><strong>Launcher persistence</strong> &mdash; last IWAD path and PWAD list are restored on startup; video renderer choice from the launcher is applied when the game starts (unless overridden on the command line).</li>
+          <li><strong>Main menu layout</strong> &mdash; port credit line no longer overlaps the Quit Game item.</li>
+          <li><strong>VS CPU menu navigation</strong> &mdash; Backspace from episode/skill now returns through bot count and mode instead of jumping to the main menu.</li>
+          <li><strong>Bot difficulty from menu</strong> &mdash; in-game skill selection now sets CPU opponent skill (was ignored; launcher-only setting applied before).</li>
+          <li><strong>Bot deathmatch crash</strong> &mdash; fixed access violation when multiple CPU players respawned in the same tic (body-queue pointer safety and one reborn per tic with bots active).</li>
+          <li><strong>DOOM Forge things</strong> &mdash; select, drag, and delete map things; hotkeys 4&ndash;8 switch to Things mode; line delete reindexes sidedefs correctly.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>Launcher layout</strong> &mdash; larger footer gap and shorter resolution dropdown list reduce overlap with footer buttons when combos are open.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-3.0.2.exe</code>.</li>
+          <li>Windows file version metadata bumped to 3.0.2 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 3.0.1</span>
+        <span class="date">13 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>CPU bot deathmatch combat</strong> &mdash; bots rush opponents head-on and shoot when aligned instead of endlessly circle-strafing each other without firing.</li>
+          <li><strong>CPU bot world interaction</strong> &mdash; bots now fight monsters (even without line-of-sight, hunting through the map), pick up useful items (keys, health, armor, ammo, weapons, powerups), and press switches and doors to progress.</li>
+          <li><strong>Co-op bot behaviour</strong> &mdash; bots prioritize combat, then needed pickups, then following the human player; they use lines and doors while hunting enemies or keeping up with you.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-3.0.1.exe</code>.</li>
+          <li>Windows file version metadata bumped to 3.0.1 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 3.0.0</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Major release</h2>
+        <ul>
+          <li><strong>Version 3.0</strong> &mdash; major milestone for the Windows port: CPU player bots, DOOM Forge, CTF, persistent settings, full WAD bundle, and the complete 2.x feature set are now consolidated under the 3.0 product line.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>CPU bot combat AI</strong> &mdash; deathmatch bots aggressively hunt the nearest enemy, chase through the map even without line-of-sight, and only hold fire when they can actually see a target. No more hiding behind walls.</li>
+          <li><strong>Bot deathmatch respawn</strong> &mdash; players respawn after death in bot deathmatch (like network games) instead of ending the match or reloading the level.</li>
+          <li><strong>Launcher layout</strong> &mdash; footer buttons (PLAY DOOM, MAP FORGE, CHANGELOG, ABOUT) no longer overlap Game tab controls after CPU player options were added; footer position is computed from the tallest tab.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-3.0.0.exe</code>.</li>
+          <li>Windows file version metadata bumped to 3.0.0 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.14</span>
+        <span class="date">13 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>New</h2>
+        <ul>
+          <li><strong>CPU player bots</strong> &mdash; play offline deathmatch or co-op against 1&ndash;3 computer opponents on any map. Bots are full player slots with weapons, movement, and combat AI (target acquisition, strafing, weapon selection). Deathmatch bots hunt visible enemies; co-op bots fight monsters and follow the human player.</li>
+          <li><strong>VS CPU PLAYERS menu</strong> &mdash; new main-menu entry: pick Deathmatch vs CPU or Co-op with CPU, choose 1&ndash;3 bots, then episode and skill as usual.</li>
+          <li><strong>Launcher CPU setup</strong> &mdash; Game tab: <strong>CPU players (offline vs bots)</strong> checkbox with mode (Deathmatch / Co-op), count (1&ndash;3), and skill tier. Disabled when multiplayer is enabled.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li>Bot games respawn players on death (like net games) instead of reloading the level.</li>
+          <li>Command-line flags: <code>-bots N</code> (1&ndash;3), <code>-deathmatch</code> or <code>-botcoop</code>, <code>-botskill N</code> (1&ndash;3).</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.14.exe</code>.</li>
+          <li>Windows file version metadata bumped to 2.0.14 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.13</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Settings persistence</strong> &mdash; <code>default.cfg</code> (controls, display options, key bindings, and all menu toggles) now saves to a per-user folder: <code>%LOCALAPPDATA%\DOOM\default.cfg</code> on Windows and <code>~/Library/Application Support/DOOM/default.cfg</code> on macOS. Settings no longer reset when the install folder is read-only or reinstalled. Existing <code>default.cfg</code> in the game folder is migrated automatically on first launch.</li>
+          <li><strong>Menu save timing</strong> &mdash; options and control changes write to disk immediately when you adjust them, and when you close a menu with Esc, so nothing is lost if you quit right after tweaking settings.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>Installer WAD bundle</strong> &mdash; the setup packages every <code>*.wad</code> from the <code>wad\</code> build folder, not just the core IWADs.</li>
+          <li><strong>AZZ_DOOM episode</strong> &mdash; <code>AZZ.WAD</code>, <code>AZZ_DOOM.WAD</code>, and <code>AZZ_DOOM.TXT</code> ship with the installer. Start Menu shortcut opens the episode readme.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.13.exe</code>.</li>
+          <li>Windows file version metadata bumped to 2.0.13 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.12</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>New</h2>
+        <ul>
+          <li><strong>Customizable display resolution</strong> &mdash; eight window-size presets from <code>320&times;200</code> through <code>2560&times;1600</code>. Options &rarr; Display &rarr; <strong>Resolution</strong> replaces the old scale slider. Saved as <code>display_resolution</code> in <code>default.cfg</code>; legacy <code>window_scale</code> values migrate automatically.</li>
+          <li><strong>Texture filter (upscale quality)</strong> &mdash; Options &rarr; Display &rarr; <strong>Texture Filter</strong>: <em>Sharp</em> (pixel-perfect nearest-neighbor) or <em>Smooth</em> (linear filtering when the 320&times;200 framebuffer is stretched). Works best with OpenGL or Direct3D presentation. Saved as <code>scale_quality</code>.</li>
+          <li><strong>Launcher display settings</strong> &mdash; <strong>Display Resolution</strong> and <strong>Texture Filter</strong> dropdowns on the Game tab. Choices persist via <code>launcher_display.txt</code> and apply on launch.</li>
+        </ul>
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Mind Control Device</strong> &mdash; converted allies are no longer invincible to the player; you can kill them with normal weapons if needed. Stale hit-target state cleared before each mind blast.</li>
+          <li><strong>Main menu keyboard</strong> &mdash; arrow keys, Enter, Esc, and hotkeys work again alongside mouse-driven menus. SDL input is polled every frame instead of only during tic catch-up.</li>
+          <li><strong>Graphics detail toggle</strong> &mdash; Options &rarr; Setup &rarr; <strong>Graphics</strong> (high/low detail) calls <code>R_SetViewSize</code> again instead of being disabled.</li>
+          <li><strong>Press release visitor counter</strong> &mdash; retro counter starts at <code>0000001</code> instead of a fake 1993-themed seed.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li>Command-line flags: <code>-res N</code> (resolution preset 0&ndash;7), <code>-smooth</code> / <code>-linear</code>, <code>-sharp</code> / <code>-nearest</code>. Legacy <code>-2</code>, <code>-3</code>, <code>-4</code> still map to presets.</li>
+          <li>Title/demo screen no longer swallows keyboard input when the menu is already open.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.12.exe</code>.</li>
+          <li>Windows file version metadata bumped to 2.0.12 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.11</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>New</h2>
+        <ul>
+          <li><strong>Demo recording &amp; playback (main menu)</strong> &mdash; <strong>Record Demo</strong> and <strong>Play Demo</strong> on the title menu. Recordings save as <code>doomdem01.lmp</code>, <code>doomdem02.lmp</code>, &hellip; in the game folder. Press <code>Q</code> during recording to stop and save. Playback returns to the menu when finished.</li>
+          <li><strong>Mouse-driven menus</strong> &mdash; full mouse control in all in-game menus with a visible arrow cursor. Hover to highlight items; left-click to activate; right-click to go back. Keyboard and joystick navigation still work.</li>
+          <li><strong>Launcher Demos tab</strong> &mdash; third tab in <code>doomlauncher.exe</code> to play or record demos, browse <code>*.lmp</code> files, and add, remove, or rename demos before launch. Launch modes: Normal game, Play demo, Record demo (uses Game tab skill/map for recording).</li>
+          <li><strong>CTF conversion wizard (Forge)</strong> &mdash; guided <strong>Map &rarr; Convert to CTF Map</strong> flow: reconnaissance, red/blue flag bases (types 9010/9011), deathmatch spawns, review, and <strong>Test CTF</strong> launch. Pulsing placement hints on the map and distance checks between bases.</li>
+        </ul>
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Launcher skill/episode/map</strong> &mdash; episode and map spinners now read correctly (previously always launched E1M1). Command-line <code>-warp</code> and <code>-skill</code> parsing uses numeric values reliably.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.11.exe</code>.</li>
+          <li>Windows file version metadata bumped to 2.0.11 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.10</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Mouse-look wall rendering</strong> &mdash; vertical look no longer smears wall textures into vertical streaks. <code>centery</code> now stays in sync with pitched <code>centeryfrac</code> so column projection and texture mapping agree.</li>
+          <li><strong>Controls rebind prompt</strong> &mdash; &ldquo;Press a key&rdquo; message moved above the status bar instead of drawing over ammo/health/armor.</li>
+          <li><strong>Controls menu state</strong> &mdash; closing the menu with Esc now clears a pending key-bind wait so rebinding cannot leak into the next session.</li>
+        </ul>
+        <h2>New</h2>
+        <ul>
+          <li><strong>DoomClon icon</strong> &mdash; custom application icon on <code>doom.exe</code>, <code>doomlauncher.exe</code>, and the Windows installer (<code>DOOM-Setup-2.0.10.exe</code>).</li>
+          <li><strong>Cheat code reference</strong> &mdash; <code>CHEAT_CODES.txt</code> documents every in-game cheat (god mode, weapons, maps, messages, and more).</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.10.exe</code>.</li>
+          <li>Includes <code>press-release.html</code> and <code>CHEAT_CODES.txt</code> in the Start Menu.</li>
+          <li>Windows file version metadata bumped to 2.0.10 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.9</span>
+        <span class="date">13 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Mouse-look pitch</strong> &mdash; vertical look no longer warps the floor/ceiling at extreme angles. Pitch is clamped to a safe range (~20 px) so the classic renderer stays stable.</li>
+          <li><strong>Full mouse look</strong> &mdash; mouse X turns the view horizontally; mouse Y looks up/down. Walking and strafing remain keyboard-only.</li>
+          <li><strong>Relative mouse capture</strong> &mdash; cursor locks during gameplay so you can spin 360&deg; without hitting the window edge. Released for menus, automap, pause, and help screens.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>Mouse-look code</strong> &mdash; centralized pitch clamping (<code>CLAMP_VIEWPITCH</code>), dedicated <code>G_ApplyMouseLook()</code>, pitch reset on level load, and no look input while paused or in menus.</li>
+          <li><strong>Crosshair drawing</strong> &mdash; leaner pixel writes with shared constants; fewer redundant bounds checks.</li>
+          <li><strong>SDL mouse input</strong> &mdash; shared button-mapping helper removes duplicate code in the video driver.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.9.exe</code>.</li>
+          <li>Includes <code>press-release.html</code> (Start Menu &rarr; Press Release) alongside the changelog.</li>
+          <li>Windows file version metadata bumped to 2.0.9 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.8</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>New</h2>
+        <ul>
+          <li><strong>Mouse-look</strong> &mdash; move the mouse up and down to look vertically (pitch clamped to about &plusmn;32&deg;). Classic Doom software rendering with a modern FPS feel.</li>
+          <li><strong>Keyboard-only movement</strong> &mdash; walking and strafing are key presses only; the mouse no longer drives forward/back or strafe.</li>
+          <li><strong>Crosshair</strong> &mdash; subtle on-screen aim marker at the centre of the view. Toggle in <strong>Options &rarr; Display &rarr; Crosshair</strong>; saved as <code>crosshair_on</code> in <code>default.cfg</code>.</li>
+          <li><strong>Custom controls</strong> &mdash; <strong>Options &rarr; Controls</strong> lets you rebind move, turn, strafe, fire, use, and run keys. Presets: <strong>Apply WASD Move</strong> and <strong>Apply Arrow Keys</strong>. Bindings are saved in <code>default.cfg</code>.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li><strong>Installer credits</strong> &mdash; setup wizard and post-install screen show Thijs Boekholt as publisher with <code>Copyright (C) 2026</code>. Setup.exe file properties include company and copyright metadata.</li>
+          <li><strong>Launcher credits</strong> &mdash; window title, header, About dialog, and executable properties list Thijs Boekholt and copyright year.</li>
+          <li><strong>Forge thing labels</strong> &mdash; two-line truncated names in the thing browser so long mobj names no longer overlap adjacent entries.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.8.exe</code>.</li>
+          <li>Windows file version metadata bumped to 2.0.8 on <code>doom.exe</code>, <code>doomlauncher.exe</code>, and <code>doomforge.exe</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.7</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Forge thing preview sprites</strong> &mdash; most blank squares in the thing browser now show the correct sprite. Pickups and decorations use <code>A0</code> lumps; monsters use <code>A1</code>; the loader tries rotation fallbacks and prefix matches (e.g. <code>SPIDA1</code> &rarr; <code>SPIDA1D1</code>).</li>
+          <li>Static map decorations (meat, torches, columns, corpses, etc.) no longer default to the player sprite when state data was missed during catalog generation.</li>
+          <li>Missing sprites (mostly Doom II things when using a Doom 1 IWAD) show the thing type number instead of an empty box.</li>
+        </ul>
+        <h2>Note</h2>
+        <ul>
+          <li>Load your IWAD via <strong>File &rarr; Load WAD</strong> or launch Forge with <code>-iwad doom.wad</code> so sprites can be read from the WAD. Doom II monsters need a Doom II IWAD to preview.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.6</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>New</h2>
+        <ul>
+          <li><strong>Full Forge thing catalog</strong> &mdash; the map editor now lists all <strong>126</strong> placeable Doom thing types (monsters, weapons, ammo, keys, powerups, decorations, corpses, torches, pillars, and more). Previously only a small hand-picked subset of ~40 types was available.</li>
+          <li>Thing names and preview sprites are generated from the game&rsquo;s mobj table (<code>info.c</code>) via <code>tools/gen_thingdata.py</code>, so labels match the real engine (e.g. type 64 = Arch-vile, type 7 = Spider Mastermind).</li>
+          <li>Scroll the thing browser with the <strong>mouse wheel</strong> to browse the full list.</li>
+        </ul>
+        <h2>Includes from 2.0.5</h2>
+        <ul>
+          <li><strong>Capture The Flag (CTF)</strong> multiplayer &mdash; launcher option or <code>-ctf</code>; Red/Blue teams, flag pickup and capture, first to 5 wins.</li>
+          <li><strong>CTF flag bases in Forge</strong> &mdash; types <code>9010</code> (Red) and <code>9011</code> (Blue).</li>
+          <li><strong>CTF intermission scoreboard</strong> and <strong>auto map restart</strong> when a team hits the capture limit.</li>
+          <li><strong>Forge thing preview fix</strong> &mdash; no more vertical streaks in sprite previews.</li>
+          <li><strong>Radar player marker</strong> &mdash; brighter yellow dot with white outline.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.5</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>New</h2>
+        <ul>
+          <li><strong>Capture The Flag (CTF)</strong> multiplayer mode &mdash; launch from the launcher or use <code>-ctf</code>. Two teams (Red/Blue), enemy flag pickup, capture at your base, first team to 5 wins.</li>
+          <li><strong>CTF flag bases in Forge</strong> &mdash; place dedicated map things: type <code>9010</code> (Red base) and <code>9011</code> (Blue base). Falls back to deathmatch or player starts if omitted.</li>
+          <li><strong>CTF intermission scoreboard</strong> &mdash; team capture totals and winner shown between matches.</li>
+          <li><strong>Auto map restart</strong> when a team reaches the capture limit; the same map reloads for the next round.</li>
+        </ul>
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Forge thing previews</strong> &mdash; sprite previews no longer show vertical streaks (patch column offsets decoded correctly).</li>
+          <li><strong>Radar player marker</strong> &mdash; brighter yellow dot with white outline for visibility.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.4</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><strong>Radar fog-of-war</strong> &mdash; the minimap no longer shows grey walls near the player that have not been seen yet. Only walls you have actually rendered in-game appear on the radar (same <code>ML_MAPPED</code> logic as the automap).</li>
+          <li>With the <strong>computer area map</strong> power-up, unexplored walls still appear in grey on the radar, matching classic Doom automap behaviour.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.3</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>New</h2>
+        <ul>
+          <li><strong>macOS port</strong> with native .app bundles for DOOM, DOOM Launcher, and DOOM Forge.</li>
+          <li>macOS install packages: <code>DOOM-Setup-2.0.3-macOS.dmg</code> (drag-and-drop) and <code>DOOM-Setup-2.0.3-macOS.pkg</code> (installer to /Applications/DOOM/).</li>
+          <li>SDL2-based DOOM Launcher for macOS with IWAD/PWAD selection and Map Forge launch.</li>
+          <li>Native macOS file dialogs for DOOM Forge (Open/Save WAD).</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Run <code>bash tools/build_macos.sh</code> on a Mac to build and create DMG/PKG installers.</li>
+          <li>See <code>README_MACOS.txt</code> for installation and usage on macOS.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.2</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Forge <strong>thing sprite previews</strong> no longer show vertical streak corruption &mdash; SDL surface pitch is now respected when blitting patch pixels.</li>
+          <li><strong>3D preview</strong> floor/ceiling projection and flat-span distance math corrected so walls, floors, and ceilings render as a readable level instead of abstract polygons.</li>
+          <li>Texture and thing thumbnails now use proper alpha blending for transparent patch pixels.</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li>Map line colors use high-contrast red (one-sided) and blue (two-sided) in Lines mode; selected lines and sector highlights are thicker and easier to see on the white canvas.</li>
+          <li>Things on the map view now display actual sprite previews instead of colored squares.</li>
+          <li>3D preview wall texturing prefers mid/bottom side textures like the game.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.2.exe</code>.</li>
+          <li>Windows file version metadata bumped to 2.0.2 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.1</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Improved</h2>
+        <ul>
+          <li>DOOM Forge map editor restyled with <strong>Windows 2000 / Me classic</strong> look &mdash; silver gray panels, 3D raised/sunken buttons, Win2K blue title bar, white map canvas, and sunken status bar.</li>
+          <li>Sector properties dialog updated to match classic Windows dialog styling.</li>
+        </ul>
+        <h2>New</h2>
+        <ul>
+          <li><strong>Help &rarr; About DOOM Forge</strong> dialog with creator credits (Thijs Boekholt), copyright, and port version information.</li>
+        </ul>
+        <h2>Build</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-2.0.1.exe</code>.</li>
+          <li>Windows file version metadata bumped to 2.0.1 on all executables.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 2.0.0</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Major release</h2>
+        <ul>
+          <li>Version <strong>2.0.0</strong> &mdash; Windows port milestone release with launcher, DOOM Forge map editor, multiplayer, radar, Mind Control weapon, and full 1.10.x feature set.</li>
+          <li>Installer package: <code>DOOM-Setup-2.0.0.exe</code>.</li>
+          <li>Windows file version metadata on <code>doom.exe</code>, <code>doomlauncher.exe</code>, and <code>doomforge.exe</code> bumped to 2.0.0.</li>
+        </ul>
+        <h2>New</h2>
+        <ul>
+          <li><strong>42 insulting quit messages</strong> when selecting Quit Game &mdash; classic DOOM taunts plus new rude lines in the spirit of the original exit prompts.</li>
+        </ul>
+        <h2>Included from 1.10.46</h2>
+        <ul>
+          <li>DOOM Forge <strong>3D Preview</strong> (WASD fly-through, player-start spawn, brighter raycaster).</li>
+          <li>Launcher <strong>Video Renderer</strong> option: Auto, OpenGL, Direct3D, or Software.</li>
+          <li>Thing picker <strong>sprite previews</strong> from the IWAD.</li>
+          <li>Texture browser with thumbnail grid and aspect-correct previews.</li>
+        </ul>
+        <h2>Components</h2>
+        <ul>
+          <li><code>doom.exe</code> &mdash; game engine (software renderer, SDL2 presentation)</li>
+          <li><code>doomlauncher.exe</code> &mdash; IWAD/PWAD, skill, map, network, and video options</li>
+          <li><code>doomforge.exe</code> &mdash; map editor with 3D preview</li>
+          <li><code>doom_extra.wad</code> &mdash; Mind Control ally weapon</li>
+          <li><code>SDL2.dll</code> &mdash; runtime</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.46</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Forge <strong>3D Preview</strong> rewritten with a simpler, brighter raycaster &mdash; walls, floors, and ceilings should now be clearly visible from the player start.</li>
+        </ul>
+        <h2>New</h2>
+        <ul>
+          <li>Launcher <strong>Video Renderer</strong> option: Auto (Hardware), OpenGL, Direct3D, or Software.</li>
+          <li>Game accepts <code>-opengl</code>, <code>-direct3d</code>, and <code>-software</code> command-line flags; choice is saved in config.</li>
+        </ul>
+        <h2>Notes</h2>
+        <ul>
+          <li>Rendering is still the classic software engine &mdash; OpenGL/Direct3D accelerate presentation only (like the original Win95 port's optional drivers).</li>
+          <li>3Dfx/Glide is not available on modern Windows and is not included in this port.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.45</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Forge <strong>3D Preview</strong> raycast math corrected &mdash; walls now render properly (was showing only floor/ceiling void).</li>
+        </ul>
+        <h2>Improved</h2>
+        <ul>
+          <li>Thing picker shows <strong>sprite previews</strong> from the IWAD in a thumbnail grid (monsters, items, player starts).</li>
+          <li>Large selected-thing preview in the bottom panel when in THINGS mode.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.44</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Forge <strong>3D Preview</strong> now renders walls correctly when viewed from inside a sector (previously showed only a dark void).</li>
+          <li>3D Preview camera starts at <strong>Player 1 start</strong> (co-op starts 2&ndash;4 as fallback) with correct Doom facing angle and eye height.</li>
+          <li>3D Preview fills the window when resized; press <strong>P</strong> to snap back to player start.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.43</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>DOOM Forge <strong>3D Preview</strong> window: fly through the current map with WASD, turn with arrow keys or mouse, R/F to move up/down.</li>
+          <li><strong>3D VIEW</strong> button in the right panel and <strong>Map &gt; 3D Preview</strong> menu item open the preview; Esc closes it.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.42</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Improved</h2>
+        <ul>
+          <li>DOOM Forge texture browser is now a <strong>thumbnail grid</strong> at the bottom of the window &mdash; scroll with the mouse wheel and click a thumbnail to choose a texture.</li>
+          <li>Texture previews use the IWAD <strong>PLAYPAL</strong> palette and preserve aspect ratio (no more stretched/distorted previews).</li>
+          <li>Larger texture previews in the bottom panel (160px) and sector editor panel (112px).</li>
+          <li>When PICK is active, a banner reads <strong>&gt;&gt;&gt; CLICK A TEXTURE THUMBNAIL TO APPLY &lt;&lt;&lt;</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.41</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>DOOM Forge <strong>Sector Properties</strong> dialog when creating a new sector (Room tool, poly close, Make Sector).</li>
+          <li>Wide right panel for existing sectors: floor/ceiling previews, heights, light, per-wall texture preview, and texture X/Y offsets.</li>
+          <li>Texture browser applies to the active PICK slot (floor, ceiling, or selected wall).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.40</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Forge: garbled UI text fixed (bitmap font now renders labels correctly).</li>
+          <li>DOOM Forge: selected sector highlighted in green on the map with an <strong>S#</strong> label.</li>
+          <li>DOOM Forge: clearer sector texture workflow with PICK / SET buttons and one-click flat apply.</li>
+        </ul>
+        <h2>Added</h2>
+        <ul>
+          <li>Mind Control weapon: press <strong>0</strong> to re-select it; status bar shows a <strong>0</strong> weapon slot when enabled.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.39</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>DOOM Forge <strong>Thing picker</strong> in THINGS mode: scrollable list of players, monsters, weapons, and items.</li>
+          <li>DOOM Forge <strong>Poly line</strong> drawing: each click continues from the last vertex; right-click ends the chain; click the start vertex to close a loop and create a sector.</li>
+          <li>DOOM Forge <strong>MAKE SECTOR</strong> button to seal an open poly chain into a room.</li>
+          <li>DOOM Forge <strong>Sector editor</strong> in SECTORS mode: floor/ceiling height, light level, and floor/ceiling textures.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.38</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Forge: loaded WAD maps now display correctly (sectors/lines loaded by lump name; camera zooms to map bounds).</li>
+          <li>DOOM Forge: E1M1-style maps and doom.wad episode maps are listed when opening a WAD.</li>
+          <li>DOOM Forge: clicking empty grid in LINES mode starts a new wall line (second click finishes it).</li>
+        </ul>
+        <h2>Added</h2>
+        <ul>
+          <li>Launcher <strong>ABOUT</strong> button with copyright for Thijs Boekholt (2026).</li>
+          <li>Game title screen and main menu show port credit in the bottom corner.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.37</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Forge <strong>File &rarr; Open WAD</strong> menu item did nothing: Win32 menu commands are now captured via a window hook (SDL was not forwarding <code>WM_COMMAND</code>).</li>
+          <li>File open/save dialogs start in the install folder and no longer disable the SDL window (which could hide the dialog).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.36</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Release</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-1.10.36.exe</code> includes <code>doom.exe</code>, <code>doomlauncher.exe</code>, <code>doomforge.exe</code>, and <code>doom_extra.wad</code>.</li>
+          <li>Start Menu shortcuts for DOOM Launcher, DOOM Forge Map Editor, and Changelog.</li>
+          <li><code>README_WINDOWS.txt</code> and post-install notes updated for DOOM Forge and Mind Control weapon.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.35</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Forge Open/Save file dialogs now appear correctly (SDL modal fix, Explorer-style dialog).</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Editor UI redesigned after classic WADED: <strong>LINES</strong> / <strong>SECTORS</strong> / <strong>THINGS</strong> modes, right-side controls, bottom texture browser.</li>
+          <li>Visible snap grid with major/minor lines; zoom buttons, mouse-wheel zoom, middle-mouse pan.</li>
+          <li><strong>LOAD WAD</strong> / <strong>SAVE WAD</strong> on-screen buttons; IWAD and PWAD map loading with map picker.</li>
+          <li>Wall / Floor / Ceiling texture filters in the browser panel; live texture preview with name.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.34</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li><strong>DOOM Forge</strong> &mdash; visual WAD map editor (<code>doomforge.exe</code>) launched from the new <em>MAP FORGE</em> button in the launcher.</li>
+          <li>Draw vertices, lines, and rectangular sectors; place enemies and items; paint wall, floor, and ceiling textures from your IWAD.</li>
+          <li>Texture browser with live patch preview and name; toolbar shortcuts; menu bar; grid snap; save PWAD with auto-built nodes/blockmap.</li>
+          <li>Map &rarr; Test in DOOM runs your PWAD immediately via <code>doom.exe</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.33</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Mind Control weapon no longer crashes: weapon graphics use IWAD plasma sprites (PWAD lumps after <code>S_END</code> are outside the engine sprite table).</li>
+          <li>Radar redrawn with automap colours and wall-type logic; nearby geometry is always visible, explored areas use full automap colours.</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Radar view radius increased; player arrow uses automap-style blue.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.32</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Mind Control weapon crash (<code>invalid sprite frame 139 : 0</code>): <code>doom_extra.wad</code> sprite lumps appended after <code>S_END</code> are now registered correctly.</li>
+          <li>Radar minimap was drawn before the 3D view and disappeared behind it; radar now draws on top after rendering.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.31</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>Mind Control ally weapon: shoot demons to convert them; allies hunt other monsters and ignore the player.</li>
+          <li>Optional <code>doom_extra.wad</code> PWAD ships weapon graphics without modifying the IWAD.</li>
+          <li>Launcher Game tab: &ldquo;Ally Weapon (Mind Control)&rdquo; checkbox loads the PWAD and enables the feature.</li>
+          <li>Single-player starts with the weapon and 40 cells when the option is enabled.</li>
+          <li>Weapon uses plasma cells (2 per shot); converted monsters fight for you with normal monster AI targeting other enemies.</li>
+          <li>Map thing type 2009 places a Mind Control pickup; command-line flag <code>-mindweapon</code> enables the feature without the launcher.</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Radar no longer shows converted allies as enemy blips.</li>
+          <li>Build script generates <code>doom_extra.wad</code> automatically from IWAD plasma sprites when available.</li>
+        </ul>
+        <h2>Notes</h2>
+        <ul>
+          <li>Bosses, Arch-Viles, Pain Elementals, and Lost Souls cannot be converted.</li>
+          <li>Friendly fire is disabled between the player and allies; feature is single-player only (not enabled in multiplayer).</li>
+          <li>Installer includes <code>doom_extra.wad</code> in the game directory.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.30</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>GTA-style minimap radar in the bottom-left corner: explored walls, enemies, items, and your facing direction.</li>
+          <li>Radar follows the player and respects explored map areas (Computer Area Map reveals more).</li>
+          <li>Options &rarr; Display &rarr; Radar toggle; saved in <code>default.cfg</code> as <code>radar_on</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.29</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM Launcher: footer buttons no longer overlap Network tab text; layout is computed from actual control positions.</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Launcher header uses Doom-font &ldquo;DOOM&rdquo; beside a large gold &ldquo;LAUNCHER&rdquo; title for better readability.</li>
+          <li>IWAD/PWAD section headers use gold-tinted Doom font; Play button uses clear bold Segoe UI text.</li>
+          <li>Game/Network tabs are custom-drawn (brown/gold theme) instead of the default white tab bar.</li>
+          <li>Footer action area has its own panel; multiplayer setup tips appear in the status bar on the Network tab.</li>
+          <li>Network tab remote-IP rows aligned consistently; window height adjusts to fit all content.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.28</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Changed</h2>
+        <ul>
+          <li>DOOM Launcher: increased STCFN HUD font size for the title, section headers (IWAD/PWAD), and Play button so text is easier to read.</li>
+          <li>Launcher layout adjusted for the larger Doom font (taller header, section rows, and Play button).</li>
+          <li>Play button label uses gold Doom-font text on the red button for better contrast.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.27</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Changed</h2>
+        <ul>
+          <li>DOOM Launcher visual refresh: warmer UAC-brown panels, red gradient header, and the classic STCFN HUD font from your IWAD for titles and the Play button.</li>
+          <li>Launcher plays E1M1 (Hangar) background music from the selected IWAD while open (falls back to other intro tracks on DOOM II IWADs).</li>
+          <li>Launcher closes automatically when DOOM starts successfully.</li>
+          <li>Fixed launcher label text contrast (network tab and section headers).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.26</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Changed</h2>
+        <ul>
+          <li>In-game Options menu fully redesigned with a custom layout: each row has a fixed position so labels and sliders no longer overlap.</li>
+          <li>SFX Volume and Music Volume use text labels with sliders on the same row; Mouse uses a compact label instead of the oversized patch.</li>
+          <li>Display submenu also uses the custom layout (Screen Size, Scale, Fullscreen).</li>
+          <li>Menu skull cursor follows the correct row in custom menus.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.25</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Sound options missing from the Options menu: SFX Volume and Music Volume sliders are now shown directly in Options (no hidden submenu).</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Options menu order: End Game, Messages, Graphic Detail, Sfx Volume, Music Volume, Display, Mouse Sensitivity.</li>
+          <li>Press F4 to jump straight to sound volume adjustment (unchanged).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.24</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Changed</h2>
+        <ul>
+          <li>In-game Options menu reorganized: screen size, display scale, and fullscreen moved to a new <strong>Display</strong> submenu so Sound and Mouse Sensitivity are visible again.</li>
+          <li>Options now lists: End Game, Messages, Graphic Detail, Display, Mouse Sensitivity, and Sound Volume.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.23</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Changed</h2>
+        <ul>
+          <li>Launcher UI redesigned: larger window, clearer spacing, dark-themed tabs, rounded panels, and a fixed footer so all controls stay visible.</li>
+          <li>Network tab labels and help text no longer clip; remote IP fields use the full width.</li>
+          <li>Enabled Windows Common Controls 6.0 manifest for sharper fonts and modern control styling.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.22</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>Launcher <strong>Network</strong> tab for UDP/IP multiplayer (co-op, deathmatch, or altdeath).</li>
+          <li>Configure player slot, number of players (2&ndash;4), UDP port, and remote player IP addresses from the launcher.</li>
+          <li>Launcher shows your local IP address to share with other players.</li>
+        </ul>
+        <h2>Fixed</h2>
+        <ul>
+          <li>Windows network bind used <code>htons()</code> twice on the UDP port, which could prevent multiplayer from working.</li>
+        </ul>
+        <h2>Notes</h2>
+        <ul>
+          <li>Classic DOOM uses <strong>UDP</strong> (not TCP) on port <code>5029</code> by default. All players must use the same IWAD, map, skill, port, and game type.</li>
+          <li>Allow <code>doom.exe</code> through Windows Firewall for private networks when hosting or joining.</li>
+          <li>Installer package: <code>DOOM-Setup-1.10.22.exe</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.21</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>Display scale (1x&ndash;8x) and fullscreen options in the Options menu (Main Menu &rarr; Options).</li>
+          <li>Settings are saved to <code>default.cfg</code> as <code>window_scale</code> and <code>window_fullscreen</code>.</li>
+          <li>Command-line overrides: <code>-fullscreen</code>, <code>-windowed</code>, and <code>-2</code>/<code>-3</code>/<code>-4</code> for scale.</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Fullscreen mode uses desktop resolution with correct 4:3 aspect ratio (letterboxed).</li>
+        </ul>
+        <h2>Notes</h2>
+        <ul>
+          <li>Installer package: <code>DOOM-Setup-1.10.21.exe</code>.</li>
+          <li><strong>Screen Size</strong> in the same Options menu still controls the in-game HUD border; <strong>Display Scale</strong> controls window/fullscreen resolution.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.20</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Music still silent: the IWAD <code>GENMIDI</code> lump is not WOPL format and cannot be loaded by <code>adl_openBankData</code>. Music now uses libADLMIDI's embedded DMX instrument banks (Doom / Doom II).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.19</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Sound effects distorted or too loud: SDL mixer now adds pre-scaled lookup values directly (matching original <code>i_sound.c</code>) and uses correct 16-bit sample stepping for pitch.</li>
+          <li>No music on modern Windows: replaced broken MCI MIDI playback with OPL3 synthesis via libADLMIDI, using the <code>GENMIDI</code> lump from your IWAD and mixed into the same SDL audio stream.</li>
+          <li><code>I_InitMusic</code> is now called at startup so the music subsystem initializes properly.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.18</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Changed</h2>
+        <ul>
+          <li>Installer setup executable (<code>DOOM-Setup-1.10.18.exe</code>) now uses a Cacodemon icon extracted from the <code>HEADA1</code> sprite lump in your IWAD.</li>
+          <li>Generalized icon tool <code>tools\extract_sprite_icon.py</code> supports any sprite name; build script generates both Cyberdemon (launcher) and Cacodemon (installer) icons.</li>
+        </ul>
+        <h2>Notes</h2>
+        <ul>
+          <li>The launcher window still uses the Cyberdemon icon when available; only the setup program uses the Cacodemon.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.17</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Keyboard controls not working when <code>default.cfg</code> contained DOS scan codes instead of DOOM key codes.</li>
+          <li>Sound effects too loud or distorted: corrected stereo volume lookup in the SDL mixer.</li>
+          <li>Music missing: MUS lumps are converted to MIDI and played through Windows MCI.</li>
+          <li>Invalid <code>sfx_volume</code> / <code>music_volume</code> values in config are reset to sensible defaults.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.16</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Launcher crash <code>0xC0000005</code> when starting a game: <code>maptexture_t</code> now matches the WAD byte layout (packed struct, 4-byte <code>masked</code> field, 4-byte obsolete columndirectory) so textures load correctly on 64-bit.</li>
+          <li>Texture pointer tables allocated with <code>sizeof(*ptr)</code> instead of 4 bytes per entry on 64-bit Windows.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.15</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Crash <code>0xC0000005</code> when starting a game from the launcher: <code>maptexture_t</code> used a 2-byte obsolete field where the WAD format has 4 bytes, so textures after index ~125 were read with width/patchcount 0, corrupting the memory heap during <code>R_InitTextures</code>.</li>
+          <li>64-bit config loader: chat macro and string defaults now store full pointers instead of truncated 32-bit values (<code>m_misc.c</code>).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.14</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>Crash <code>0xC0000005</code> right after startup: same 64-bit pointer truncation bug in <code>R_InitTranslationTables</code> as the earlier COLORMAP fix.</li>
+          <li>Crash when loading a level: 64-bit fixes in zone memory allocator (<code>Z_Free</code> / <code>Z_ChangeTag</code>).</li>
+          <li>Increased default zone memory to 16 MB on Windows.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.13</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><code>W_ReadLump: only read -1 of 8704 on lump 1</code> on 64-bit Windows: the COLORMAP loader was truncating a 64-bit pointer to 32-bit when aligning memory (<code>R_InitColormaps</code>).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.12</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><code>W_ReadLump: only read -1</code> &mdash; restored original id Software WAD file handling: IWAD/PWAD file handles stay open for the entire game session instead of being closed and reopened (the Windows port had broken this).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.11</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><code>W_ReadLump: couldn't read</code> on launch: reverted to the same POSIX file I/O used during WAD init (Win32 <code>CreateFile</code> was failing in the launched process).</li>
+          <li>Launcher now writes the IWAD path to <code>%LOCALAPPDATA%\DOOM\launcher_iwad.txt</code> so DOOM always receives the full path reliably.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.10</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><code>W_ReadLump: only read -1</code> when DOOM is installed under <code>Program Files</code>: the IWAD path is now passed via the <code>DOOM_IWAD</code> environment variable instead of a quoted command-line argument that Windows was splitting at spaces.</li>
+          <li>WAD lump reads on Windows now use native Win32 file I/O for reliability.</li>
+          <li>PWAD paths with spaces are passed via <code>DOOM_PWADS</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.9</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><code>Could not stage IWAD for launch</code> when using the installed <code>doom.wad</code> in Program Files: local IWADs are now used directly instead of copying into the install folder (which requires admin rights).</li>
+          <li>USB/network IWADs are staged to <code>%TEMP%</code> instead of the install directory.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.8</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li><code>W_ReadLump: only read -1</code> when loading IWADs from USB or network drives: lump reads now use native Win32 file I/O with stable WAD source IDs.</li>
+          <li>Launcher copies your IWAD to <code>launcher_iwad.wad</code> locally (with size verification) before launch so DOOM never reads directly from removable paths.</li>
+          <li>Unreadable blocky launcher text: entire UI now uses clear Segoe UI (WAD pixel font removed from labels and buttons).</li>
+          <li>More reliable process launch via a properly quoted full command line.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.7</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>WAD read failures from USB/network paths (<code>W_ReadLump: only read -1</code>) by reopening the IWAD on each lump read.</li>
+          <li>Launcher stages your IWAD to <code>launcher_iwad.wad</code> in the install folder before starting DOOM.</li>
+          <li>Unreadable blocky UI text: labels and buttons now use clear Segoe UI; only the header word "DOOM" uses the WAD font.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.6</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM no longer crashes during startup on 64-bit Windows (texture loader struct alignment in <code>R_InitTextures</code>).</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Launcher redesigned with a dark DOOM-themed UI and red accent header.</li>
+          <li>HUD font (<code>STCFN</code> lumps) from your IWAD is used for titles and buttons.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.5</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM now starts correctly when the IWAD path contains <code>&amp;</code> (for example <code>U:\Appz &amp; Drivers\...</code>).</li>
+          <li>Launcher title bar no longer shows garbled characters after loading the Cyberdemon icon.</li>
+          <li>Cyberdemon icon rendering now reads sprite dimensions correctly from the WAD patch format.</li>
+          <li>Launcher reports an error if DOOM exits immediately instead of always saying "DOOM launched."</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.4</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Fixed</h2>
+        <ul>
+          <li>DOOM no longer crashes with <code>Please set $HOME to your home directory</code> on Windows.</li>
+          <li>Launcher now loads the Cyberdemon icon directly from your selected IWAD at runtime.</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Launcher sets <code>HOME</code> from <code>USERPROFILE</code> before starting <code>doom.exe</code> for compatibility.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.3</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>Cyberdemon icon extracted from the <code>CYBRA1</code> sprite lump in your IWAD at build time.</li>
+          <li>Launcher window and <code>doomlauncher.exe</code> use the Cyberdemon icon when an IWAD with that sprite is available.</li>
+          <li>Installer setup executable uses the same Cyberdemon icon via <code>SetupIconFile</code>.</li>
+          <li>New tool <code>tools\extract_cyber_icon.py</code> renders the patch with the WAD <code>PLAYPAL</code> palette into <code>assets\cyberdemon.ico</code>.</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Build script stages <code>doom2.wad</code> when present and tries multiple IWAD paths for icon extraction.</li>
+          <li>Windows file version metadata bumped to 1.10.3.</li>
+        </ul>
+        <h2>Notes</h2>
+        <ul>
+          <li>Shareware <code>doom1.wad</code> does not contain the Cyberdemon sprite; use <code>doom.wad</code> or <code>doom2.wad</code> for the icon.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.2</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>New installer package <code>DOOM-Setup-1.10.2.exe</code> built from the current sources.</li>
+          <li>Launcher auto-detects both <code>doom.wad</code> and <code>doom1.wad</code> in the install folder.</li>
+          <li>Build script accepts IWAD from <code>wad\doom.wad</code>, <code>wad\doom1.wad</code>, or the <code>DOOM_WAD</code> environment variable.</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Changelog HTML fully updated with detailed notes for versions 1.10.0, 1.10.1, and 1.10.2.</li>
+          <li>Installer ships whichever IWAD was staged at build time (<code>doom.wad</code> preferred, or <code>doom1.wad</code>).</li>
+          <li>Windows file version metadata on <code>doom.exe</code> and <code>doomlauncher.exe</code> bumped to 1.10.2.</li>
+          <li>Post-install message and README updated for version 1.10.2.</li>
+        </ul>
+        <h2>Fixed</h2>
+        <ul>
+          <li>Version resources compile correctly with MinGW <code>windres</code> via CMake-generated <code>.rc</code> files.</li>
+          <li>Build script reads the active version from <code>installer\version.inc</code> for console output.</li>
+          <li>Installer uses <code>skipifsourcedoesntexist</code> so missing optional WAD files do not break packaging.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.1</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Added</h2>
+        <ul>
+          <li>Windows installer bundles the game IWAD (<code>doom.wad</code> when provided at build time).</li>
+          <li>Centralized version numbering via <code>version.h</code>, <code>CMakeLists.txt</code>, and <code>installer/version.inc</code>.</li>
+          <li>HTML changelog shipped with the installation and linked from the Start Menu.</li>
+          <li>Launcher displays version in the window title and includes a <strong>Changelog</strong> button.</li>
+          <li>Windows file version properties on <code>doom.exe</code> and <code>doomlauncher.exe</code>.</li>
+        </ul>
+        <h2>Changed</h2>
+        <ul>
+          <li>Installer welcome text reflects bundled game data.</li>
+          <li>Launcher pre-selects the installed IWAD on startup.</li>
+          <li>Installer output renamed to versioned filename (<code>DOOM-Setup-1.10.1.exe</code>).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="release-header">
+        <span class="version">Version 1.10.0</span>
+        <span class="date">12 June 2026</span>
+      </div>
+      <div class="release-body">
+        <h2>Initial Windows release</h2>
+        <ul>
+          <li>Port of original linuxdoom 1.10 source to Windows using SDL2.</li>
+          <li>Graphical launcher for IWAD/PWAD selection, skill level, episode, and map.</li>
+          <li>Inno Setup installer with Start Menu and optional desktop shortcut.</li>
+          <li>Command-line <code>-iwad</code> support for custom WAD paths.</li>
+          <li>SDL2 video rendering, digital sound, keyboard, and mouse input.</li>
+          <li>Winsock networking support for multiplayer (<code>-net</code>).</li>
+          <li>Game options: No Monsters, Respawn, and Fast Monsters via launcher or command line.</li>
+        </ul>
+        <h2>Components (initial)</h2>
+        <ul>
+          <li><code>doom.exe</code> &mdash; game engine</li>
+          <li><code>doomlauncher.exe</code> &mdash; pre-game configuration GUI</li>
+          <li><code>SDL2.dll</code> &mdash; SDL2 runtime library</li>
+        </ul>
+        <p style="color:var(--muted);font-size:0.9rem;margin:12px 0 0;">
+          Later releases add <code>doomforge.exe</code> (map editor, v1.10.34+),
+          <code>doom_extra.wad</code> (Mind Control weapon, v1.10.31+), and radar (v1.10.30+).
+          Version <strong>3.0.4</strong> is the current release.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Windows port, launcher, and DOOM Forge by Thijs Boekholt &mdash; Copyright (C) 2026.<br>
+    Based on the DOOM Source Code License published by id Software, Inc.
+  </footer>
+</body>
+</html>

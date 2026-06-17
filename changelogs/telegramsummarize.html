@@ -1,0 +1,833 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Summarize â€” Changelog</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+      --tag-bg: #dbeafe;
+      --tag-text: #1d4ed8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    header {
+      margin-bottom: 28px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      margin: 0;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 1.25rem;
+    }
+    .release {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      margin-top: 18px;
+    }
+    .release:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+    .release-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .version {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+    .date {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    li { margin-bottom: 6px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+    tr:last-child td { border-bottom: none; }
+    .mono {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.85rem;
+    }
+    footer {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Telegram Summarize</h1>
+      <p class="subtitle">Release notes and build history</p>
+    </header>
+
+    <section>
+      <h2>Release notes</h2>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.7.1</span>
+          <span class="tag">Latest</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li><strong>Minder focus op één gebruiker:</strong> strengere berichten-sampling (max ~14% per persoon) en prompts die onderwerp eerst zetten, niet de luidste stem.</li>
+          <li><strong>Juiste voornaamwoorden:</strong> geslacht afgeleid uit chatcontext (zij/haar vs hij/zijn); bij twijfel naam of @mention i.p.v. raden.</li>
+          <li>Waarschuwing aan de AI als iemand veel berichten stuurde, zodat anderen even zwaar meetellen.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.7.0</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li><strong>Dagoverzicht zoals bedoeld:</strong> hoofdonderwerpen van de laatste 24 uur, opgesplitst in Nacht / Ochtend / Middag / Avond.</li>
+          <li>Per dagdeel: uitgebreide samenvatting van wat er besproken werd, met namen van wie erover sprak (Betrokken: …).</li>
+          <li>Geen chat-kopieën meer — elke dagdeel krijgt een eigen AI-pass; plus overzicht <em>Hoofdonderwerpen van de dag</em> bovenaan.</li>
+          <li>Gebalanceerde naamverdeling; dode code opgeruimd.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.6.3</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li><strong>Fix:</strong> no more copy-paste of chat messages — each day part gets its own AI pass that writes a real narrative summary.</li>
+          <li>Summarizes the full day per block (Nacht/Ochtend/Middag/Avond), not just the last few timestamps.</li>
+          <li>Detects and strips transcript-style output; retries if the model tries to dump raw messages.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.6.2</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Richer day-part sections: multiple topics per block, 3–5 sentences each, who discussed what ("Betrokken: …").</li>
+          <li>Stronger name rotation — same users no longer repeated across every section.</li>
+          <li>Longer output (more tokens); conversation highlights per period guide the AI without fixating on top senders.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.6.1</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Recap split by day parts: Nacht, Ochtend, Middag, Avond — what was discussed in each block.</li>
+          <li>Balanced group summary: no longer dominated by whoever sent the most messages.</li>
+          <li>Transcript sampling caps messages per person; participant overview shows who was active without letting one nick hijack the recap.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.6.0</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li><strong>Complete rewrite:</strong> one AI pass — summarize what was talked about, paste-ready text. No quote lists, no inventory step, no day-part reassembly.</li>
+          <li>Output is topic headings + short paragraphs about what happened, who said what. Quotes only inline when they matter.</li>
+          <li>Much faster: typically 5–15 min with Ollama (was 30–60+ min on busy groups).</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.5.2</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Removed automatic recap retry — no more second full AI pass when output looks generic (cuts worst-case time roughly in half).</li>
+          <li>Cancel button on the progress overlay — stop connect, fetch or summarization at any time.</li>
+          <li>Use Compact detail level or OpenAI for faster runs on very active groups.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.5.1</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Fixed false timeout after ~20 min: per-step limit raised to 45 min for Ollama (was 12 min).</li>
+          <li>Fixed timeout bug that showed cryptic English "The operation was canceled." instead of a clear Dutch/English message.</li>
+          <li>Errors now name which step timed out (inventory, recap, quotes).</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.5.0</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Summarization overlay now shows real progress: step (1 van 2), phase name, detail, % bar and elapsed time.</li>
+          <li>Elapsed time updates separately every 5s — no longer replaces the current step description.</li>
+          <li>Status bar mirrors the active step during generation; connect/fetch still use the simple busy indicator.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.4.0</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li><strong>Much faster summarization</strong> — 2 AI steps instead of 3 (recap + quotes merged into one pass).</li>
+          <li>Smart message selection replaces the full 95k transcript; keeps substantive messages, links, replies and quotes.</li>
+          <li>Ollama native API with model warm-up, keep-alive and tuned context size — less waiting between steps.</li>
+          <li>Same detail requirements: topic inventory, per-topic attribution, day-parts and outstanding quotes preserved.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.3.0</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Save as PDF button — instantly exports the current summary to your Downloads folder.</li>
+          <li>Filename uses date and time, e.g. <code>TelegramSummarize-2026-06-10_14-30-45.pdf</code> — no save dialog.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.2.0</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Instant Dutch ↔ English GUI toggle via button in the header (saved in settings).</li>
+          <li>All labels, buttons, status messages, tray menu, and dialogs switch language immediately.</li>
+          <li>Summary language setting remains separate — controls AI output, not the interface.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.1.0</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Restored the classic vertical layout: header, Samenvatting/Instellingen tabs, full-width preview below.</li>
+          <li>All v2.0 features kept: 3-step AI summaries, detail levels, quotes, tray icon, About dialog, tray settings.</li>
+          <li>Instellingen tab groups Telegram, AI, and systeemvak options in one scrollable panel with save/about/changelog.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v2.0.0</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li><strong>Major release</strong> — richer summaries with 3-step AI (topics → detailed recap → quotes of the day).</li>
+          <li>Detail levels: Compact / Normal / Detailed; configurable quote count and 12/24/48h fetch window.</li>
+          <li>System tray icon with Open, Connect, Summarize, Copy, Settings, About, Exit; minimize/close to tray.</li>
+          <li>Redesigned UI: toolbar, menu bar, split layout (settings left, preview right), About dialog.</li>
+          <li>Per-topic attribution with linked nicknames; outstanding quotes section with speaker attribution.</li>
+          <li>Telegram HTML copy-paste; installer still auto-installs Ollama + llama3.2:3b.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.16</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Less generic output: two-step summarize (topic inventory → specific recap) with real names per topic.</li>
+          <li>Bans repetitive filler phrases; max 3 sentences per topic; auto-retry if output is too vague.</li>
+          <li>Feeds key messages per day-part into the AI so details come from the actual transcript.</li>
+          <li>Day-part sections and Telegram HTML copy-paste formatting preserved. Installer includes Ollama setup.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.15</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Fixed hang on "Dagdeel 1/4" — back to one fast AI round instead of four slow sequential calls.</li>
+          <li>Day-part sections (Nacht/Ochtend/Middag/Avond) still guaranteed via structured output + assembly.</li>
+          <li>Live progress heartbeat while Ollama works; 12-minute timeout with clear error if stuck.</li>
+          <li>Installer auto-installs Ollama + llama3.2:3b and configures the app on every install.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.14</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Copy to clipboard now uses Telegram HTML formatting — bold, italic, and user mentions paste correctly.</li>
+          <li>@username mentions preferred; name-only users get clickable tg://user links on paste.</li>
+          <li>Preview shows clean readable text; paste preserves bold quotes, headers, and linked nicknames.</li>
+          <li>Installer auto-installs Ollama + llama3.2:3b and configures the app on every install.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.13</span>
+          <span class="date">Released 2026-06-10</span>
+        </div>
+        <ul>
+          <li>Guaranteed day-part sections: Nacht, Ochtend, Middag, Avond — always present in every summary.</li>
+          <li>Each active day-part summarized separately with real nicknames (**@user** / **[Name](tg://user?id=ID)**), never "een gebruiker".</li>
+          <li>Per-topic format: who started it, who participated, quotes and facts in bold — assembled for Telegram copy-paste.</li>
+          <li>Installer auto-installs Ollama + llama3.2:3b and configures the app on every install.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.12</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Less repetition: topic-focused summaries with varied wording and compact blocks per subject.</li>
+          <li>Each topic lists who started it and who participated — bold, clickable nicknames throughout.</li>
+          <li>Quotes and standout facts highlighted in <strong>bold</strong>; Telegram-ready copy-paste formatting.</li>
+          <li>Installer auto-installs Ollama + llama3.2:3b and configures the app on every install.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.11</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Dutch day-story format: summary divided into Nacht, Ochtend, Middag, and Avond sections.</li>
+          <li>Each topic names who raised it with bold, clickable nicknames (**@user** or **[Name](tg://user?id=ID)**).</li>
+          <li>Narrative recap per day-part with relevant details, outcomes, and a closing day reflection.</li>
+          <li>Installer still auto-installs Ollama, downloads llama3.2:3b, and configures the app after setup.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.10</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>More extended Dutch recaps: main topics across the full 24h with who was involved in each.</li>
+          <li>Topic inventory step for chats with 80+ messages — ensures inclusive coverage without slow multi-chunk runs.</li>
+          <li>New sections: per-topic participants, side threads, and a “who did what” overview per active member.</li>
+          <li>Higher word targets (e.g. 1400+ words for ~300 messages) and minimum topic counts scaled to chat size.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.9</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Much faster: single AI pass for up to 500 messages (~5–15 min instead of 40+).</li>
+          <li>Fixed AI refusal responses — always produces a Dutch recap of the transcript.</li>
+          <li>Default model llama3.2:3b (faster); installer auto-installs Ollama + model.</li>
+          <li>Dutch-first prompts with timeline, topics, and who-said-what attribution.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.8</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Clearer progress during multi-step summarization (step X of Y, time expectations).</li>
+          <li>Installer always runs automatic Ollama + llama3.2 setup on install.</li>
+          <li>Detailed daily recaps with timeline and attribution (from v1.0.6+).</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.7</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Installer automatically installs Ollama, downloads llama3.2, and configures the app (no extra steps).</li>
+          <li>Includes detailed multi-stage daily summaries from v1.0.6.</li>
+          <li>Start menu shortcut to re-run Ollama setup if needed.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.6</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Substantially longer summaries with timeline, topics, and who-said-what attribution.</li>
+          <li>Multi-stage summarization for busy chats (80+ messages) for better coverage.</li>
+          <li>Higher output limits so recaps are not cut short.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.5</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Installer always runs Ollama + llama3.2 model setup automatically (verified after download).</li>
+          <li>App auto-downloads the Ollama model on first summarize if it is missing.</li>
+          <li>Fixed "model llama3.2 not found" error when Ollama is installed but the model was not pulled.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.4</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Installer can automatically download, install Ollama, and fetch the llama3.2 model.</li>
+          <li>Default summarization provider is now Ollama (free, local).</li>
+          <li>Start menu shortcut: "Setup Ollama (AI engine)" to re-run AI setup.</li>
+          <li>Clearer error when Ollama is not running.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.3</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Clear error message when OpenAI quota/billing is exceeded (instead of raw JSON).</li>
+          <li>Optional Ollama provider for free local summarization without OpenAI credits.</li>
+          <li>Large transcripts are trimmed automatically to stay within model limits.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.2</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Fixed summarization failing with "Could not resolve user" for group members.</li>
+          <li>User names are now loaded from message history and group participants.</li>
+          <li>Unresolved senders fall back to a generic label instead of aborting the summary.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.1</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Fixed connection failure: verification-code dialog now opens correctly on the UI thread (STA error resolved).</li>
+          <li>Added step-by-step usage instructions on the Summarize tab.</li>
+          <li>Installer now includes this changelog.</li>
+        </ul>
+      </article>
+
+      <article class="release">
+        <div class="release-header">
+          <span class="version">v1.0.0</span>
+          <span class="date">Released 2026-06-09</span>
+        </div>
+        <ul>
+          <li>Initial Windows desktop release.</li>
+          <li>Connect with your Telegram account and list group chats.</li>
+          <li>Summarize the last 24 hours of messages with OpenAI.</li>
+          <li>Formatted output for pasting into Telegram Desktop (bold, mentions, links).</li>
+          <li>Self-contained installer and portable executable.</li>
+          <li>User guide and quick-start documentation.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section>
+      <h2>Build history</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Build started</th>
+            <th>Build finished</th>
+            <th>Duration</th>
+            <th>Installer</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody id="build-history-body">
+          <!--BUILD_HISTORY_ROWS-->
+          <tr>
+            <td><strong>v2.7.2</strong></td>
+            <td class="mono">2026-06-16 06:32:53 +02:00</td>
+            <td class="mono">2026-06-16 06:34:19 +02:00</td>
+            <td>86s</td>
+            <td class="mono">TelegramSummarize-Setup-2.7.2.exe</td>
+            <td>78,2 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.7.1</strong></td>
+            <td class="mono">2026-06-10 16:33:14 +02:00</td>
+            <td class="mono">2026-06-10 16:33:44 +02:00</td>
+            <td>30s</td>
+            <td class="mono">TelegramSummarize-Setup-2.7.1.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.7.0</strong></td>
+            <td class="mono">2026-06-10 16:00:34 +02:00</td>
+            <td class="mono">2026-06-10 16:01:14 +02:00</td>
+            <td>40s</td>
+            <td class="mono">TelegramSummarize-Setup-2.7.0.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.6.3</strong></td>
+            <td class="mono">2026-06-10 13:02:17 +02:00</td>
+            <td class="mono">2026-06-10 13:02:48 +02:00</td>
+            <td>30s</td>
+            <td class="mono">TelegramSummarize-Setup-2.6.3.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.6.2</strong></td>
+            <td class="mono">2026-06-10 13:01:39 +02:00</td>
+            <td class="mono">2026-06-10 13:02:09 +02:00</td>
+            <td>30s</td>
+            <td class="mono">TelegramSummarize-Setup-2.6.2.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.6.1</strong></td>
+            <td class="mono">2026-06-10 11:59:18 +02:00</td>
+            <td class="mono">2026-06-10 11:59:51 +02:00</td>
+            <td>34s</td>
+            <td class="mono">TelegramSummarize-Setup-2.6.1.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.6.0</strong></td>
+            <td class="mono">2026-06-10 10:57:15 +02:00</td>
+            <td class="mono">2026-06-10 10:57:50 +02:00</td>
+            <td>34s</td>
+            <td class="mono">TelegramSummarize-Setup-2.6.0.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.5.2</strong></td>
+            <td class="mono">2026-06-10 08:07:58 +02:00</td>
+            <td class="mono">2026-06-10 08:08:33 +02:00</td>
+            <td>35s</td>
+            <td class="mono">TelegramSummarize-Setup-2.5.2.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.5.1</strong></td>
+            <td class="mono">2026-06-10 03:21:15 +02:00</td>
+            <td class="mono">2026-06-10 03:21:56 +02:00</td>
+            <td>41s</td>
+            <td class="mono">TelegramSummarize-Setup-2.5.1.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.5.0</strong></td>
+            <td class="mono">2026-06-10 02:54:50 +02:00</td>
+            <td class="mono">2026-06-10 02:57:34 +02:00</td>
+            <td>163s</td>
+            <td class="mono">TelegramSummarize-Setup-2.5.0.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.4.0</strong></td>
+            <td class="mono">2026-06-10 02:38:45 +02:00</td>
+            <td class="mono">2026-06-10 02:39:15 +02:00</td>
+            <td>30s</td>
+            <td class="mono">TelegramSummarize-Setup-2.4.0.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.3.0</strong></td>
+            <td class="mono">2026-06-10 02:33:13 +02:00</td>
+            <td class="mono">2026-06-10 02:34:14 +02:00</td>
+            <td>61s</td>
+            <td class="mono">TelegramSummarize-Setup-2.3.0.exe</td>
+            <td>78,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.2.0</strong></td>
+            <td class="mono">2026-06-10 02:29:07 +02:00</td>
+            <td class="mono">2026-06-10 02:30:10 +02:00</td>
+            <td>62s</td>
+            <td class="mono">TelegramSummarize-Setup-2.2.0.exe</td>
+            <td>66,1 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.1.0</strong></td>
+            <td class="mono">2026-06-10 02:22:53 +02:00</td>
+            <td class="mono">2026-06-10 02:24:00 +02:00</td>
+            <td>66s</td>
+            <td class="mono">TelegramSummarize-Setup-2.1.0.exe</td>
+            <td>66,1 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v2.0.0</strong></td>
+            <td class="mono">2026-06-10 02:08:38 +02:00</td>
+            <td class="mono">2026-06-10 02:09:10 +02:00</td>
+            <td>32s</td>
+            <td class="mono">TelegramSummarize-Setup-2.0.0.exe</td>
+            <td>66,1 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.16</strong></td>
+            <td class="mono">2026-06-10 01:36:21 +02:00</td>
+            <td class="mono">2026-06-10 01:36:46 +02:00</td>
+            <td>25s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.16.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.15</strong></td>
+            <td class="mono">2026-06-10 01:21:10 +02:00</td>
+            <td class="mono">2026-06-10 01:21:37 +02:00</td>
+            <td>28s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.15.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.14</strong></td>
+            <td class="mono">2026-06-10 01:01:53 +02:00</td>
+            <td class="mono">2026-06-10 01:02:20 +02:00</td>
+            <td>27s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.14.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.13</strong></td>
+            <td class="mono">2026-06-10 00:38:39 +02:00</td>
+            <td class="mono">2026-06-10 00:39:00 +02:00</td>
+            <td>21s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.13.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.12</strong></td>
+            <td class="mono">2026-06-10 00:23:00 +02:00</td>
+            <td class="mono">2026-06-10 00:23:23 +02:00</td>
+            <td>23s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.12.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.11</strong></td>
+            <td class="mono">2026-06-09 23:57:26 +02:00</td>
+            <td class="mono">2026-06-09 23:57:48 +02:00</td>
+            <td>22s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.11.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.10</strong></td>
+            <td class="mono">2026-06-09 23:56:54 +02:00</td>
+            <td class="mono">2026-06-09 23:57:16 +02:00</td>
+            <td>22s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.10.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.9</strong></td>
+            <td class="mono">2026-06-09 23:41:02 +02:00</td>
+            <td class="mono">2026-06-09 23:41:25 +02:00</td>
+            <td>23s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.9.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.8</strong></td>
+            <td class="mono">2026-06-09 23:08:40 +02:00</td>
+            <td class="mono">2026-06-09 23:09:31 +02:00</td>
+            <td>51s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.8.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.7</strong></td>
+            <td class="mono">2026-06-09 23:01:01 +02:00</td>
+            <td class="mono">2026-06-09 23:01:23 +02:00</td>
+            <td>22s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.7.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.6</strong></td>
+            <td class="mono">2026-06-09 22:59:28 +02:00</td>
+            <td class="mono">2026-06-09 22:59:50 +02:00</td>
+            <td>22s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.6.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.5</strong></td>
+            <td class="mono">2026-06-09 22:51:40 +02:00</td>
+            <td class="mono">2026-06-09 22:51:54 +02:00</td>
+            <td>14s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.5.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.4</strong></td>
+            <td class="mono">2026-06-09 22:46:57 +02:00</td>
+            <td class="mono">2026-06-09 22:47:11 +02:00</td>
+            <td>14s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.4.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.3</strong></td>
+            <td class="mono">2026-06-09 22:15:46 +02:00</td>
+            <td class="mono">2026-06-09 22:16:07 +02:00</td>
+            <td>21s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.3.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.2</strong></td>
+            <td class="mono">2026-06-09 22:13:33 +02:00</td>
+            <td class="mono">2026-06-09 22:13:55 +02:00</td>
+            <td>22s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.2.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.1</strong></td>
+            <td class="mono">2026-06-09 22:10:50 +02:00</td>
+            <td class="mono">2026-06-09 22:11:11 +02:00</td>
+            <td>21s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.1.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <tr>
+            <td><strong>v1.0.0</strong></td>
+            <td class="mono">2026-06-09 12:00:00 +02:00</td>
+            <td class="mono">2026-06-09 12:00:27 +02:00</td>
+            <td>27s</td>
+            <td class="mono">TelegramSummarize-Setup-1.0.0.exe</td>
+            <td>55,3 MB</td>
+          </tr>
+          <!--/BUILD_HISTORY_ROWS-->
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      Page generated by <span class="mono">build-installer.ps1</span>
+    </footer>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

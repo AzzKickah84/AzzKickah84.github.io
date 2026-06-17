@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SuperUpdater Changelog</title>
+  <style>
+    :root {
+      --bg: #1e1e2e;
+      --card: #252536;
+      --accent: #7c9cff;
+      --text: #e8eaf0;
+      --muted: #a0a8b8;
+      --border: #3a3a52;
+      --success: #4caf50;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI Variable Text", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container { max-width: 820px; margin: 0 auto; }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    h1 { margin: 0; color: var(--accent); font-size: 2rem; }
+    .subtitle { color: var(--muted); margin-top: 0.25rem; }
+    .release {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .release h2 {
+      margin: 0 0 0.25rem;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .badge.current { background: var(--success); }
+    .date { color: var(--muted); font-size: 0.875rem; margin-bottom: 1rem; }
+    ul { margin: 0; padding-left: 1.25rem; }
+    li { margin-bottom: 0.35rem; }
+    li.new { list-style-type: "✦ "; }
+    li.fix { list-style-type: "🛠 "; }
+    li.imp { list-style-type: "⬆ "; }
+    footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SuperUpdater Changelog</h1>
+      <p class="subtitle">Release history for the Windows system update manager</p>
+    </header>
+
+    <article class="release">
+      <h2><span class="badge current">Current</span> v1.6.5</h2>
+      <p class="date">June 16, 2026</p>
+      <ul>
+        <li class="new">Programming Workshop batch release — unified installer packaging in Releases\2026-06-16</li>
+        <li class="imp">Press release and changelog bundled with installer distribution</li>
+        <li class="imp">Version metadata synchronized across csproj, Inno Setup, and build scripts</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2><span class="badge">Previous</span> v1.6.4</h2>
+      <p class="date">June 16, 2026</p>
+      <ul>
+        <li class="fix">Manual scheduled run now refreshes the UI after completion (scan no longer skipped while busy)</li>
+        <li class="fix">Scheduled Windows Update steps report success/failure correctly in silent runs</li>
+        <li class="fix">Scheduled scan-only runs return exit code 0 instead of failing silently</li>
+        <li class="fix">Cancelling an operation now terminates the child process tree (winget, choco, pnputil, etc.)</li>
+        <li class="imp">Operation cancellation tokens disposed properly between runs</li>
+        <li class="imp">Winget agreement flags read from in-memory settings instead of reloading from disk each call</li>
+        <li class="imp">Log and status brush converters use frozen cached brushes (lower memory churn)</li>
+        <li class="imp">Dashboard welcome title bound to app version (no hardcoded version string in XAML)</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.6.3</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">System Restore wizard layout — white content area, navy header rule, overlapping orange/blue accent squares</li>
+        <li class="new">Left task pane with classic radio-button navigation (Dashboard, Programs, Drivers, Problem Hardware, and more)</li>
+        <li class="new">Green accent bar, classic gray footer with 3D buttons, orange corner decoration</li>
+        <li class="imp">Splash, About, and Run summary dialogs restyled to match the Windows ME maintenance wizard</li>
+        <li class="imp">All existing features preserved — scan, update everything, profiles, CLI, drivers, problem hardware</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.6.2</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Windows ME / System Restore classic theme — blue gradient sidebar, 3D buttons, silver panels</li>
+        <li class="new">Tahoma-style typography, green classic progress bars, wizard title band</li>
+        <li class="imp">Splash and About dialogs restyled to match classic Windows maintenance wizards</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.6.1</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">New brand icon — red rocket swirling in orbit around the planet</li>
+        <li class="imp">Updated press release documenting all program features through v1.6.1</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.6.0</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Headless CLI — --help, --export-scan, --profile, --json output</li>
+        <li class="new">Export scan snapshot to JSON from Dashboard or command line</li>
+        <li class="new">Reboot pending detection on Dashboard and status bar</li>
+        <li class="new">Keyboard shortcuts — F5 scan, Ctrl+U update everything, Esc cancel</li>
+        <li class="imp">Scheduled tasks pass update profile to silent runner</li>
+        <li class="imp">Activity log mirrored to daily app log files</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.5.1</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Package exclusion list — skip IDs/names during scan and update</li>
+        <li class="new">Update profiles — Programs only, Programs + Windows Update, Full maintenance</li>
+        <li class="new">Update everything — one unattended button with profile selection and confirmation</li>
+        <li class="new">Sidebar Update everything button for power-user workflow</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.5.0</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Persistent JSON run reports saved after scans and batch updates</li>
+        <li class="new">Run summary dialog — per-package success/fail breakdown when batches complete</li>
+        <li class="new">Dashboard Last run card with view-details and report folder access</li>
+        <li class="imp">Scheduled runner uses per-package upgrades with the same reporting as the GUI</li>
+        <li class="imp">Unified AppLogger for scheduled and interactive log files</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.4.0</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Problem Hardware section — detect devices with missing, disabled, or broken drivers (Device Manager issues)</li>
+        <li class="new">pnputil /enum-devices /problem scan with hardware ID enrichment and problem-code filters</li>
+        <li class="new">Actions: scan for drivers, Windows Update driver search, INF install, backup, enable, restart, remove ghosts</li>
+        <li class="new">Copy hardware IDs, open Device Manager, select all/none/invert, dashboard problem-device counts</li>
+        <li class="new">Settings for startup scan and including disabled or disconnected devices</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.3.0</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">New brand icon — globe with upward arrow (multi-size app and setup icons)</li>
+        <li class="new">Press release HTML documenting all features and capabilities</li>
+        <li class="new">Visual Studio 2022 WPF Designer preview with design-time sample data</li>
+        <li class="imp">winget silent flags now respect Accept winget agreements setting</li>
+        <li class="imp">Installer includes changelog and press release shortcuts</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.2.1</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Driver install selection dialog — review all detected INFs before installing</li>
+        <li class="new">Dialog shows driver name, provider, class, version, file name, and subfolder</li>
+        <li class="new">Search filter plus Select all / Select none / Invert for easy bulk selection</li>
+        <li class="imp">Improved INF metadata parsing for clearer driver names and versions</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.2.0</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Help section with expandable guides — press F1 anytime</li>
+        <li class="new">Install drivers from INF folders (scan, selective install, bulk folder install)</li>
+        <li class="new">Scoop package manager integration — list, detect outdated, and upgrade</li>
+        <li class="new">Windows Optional Features — browse and enable Hyper-V, WSL, .NET, and more</li>
+        <li class="new">Per-source toggles — enable/disable winget, Store, Chocolatey, Scoop, and Features</li>
+        <li class="new">Dashboard quick toggles, contextual hints, and program source filter</li>
+        <li class="imp">Copyright updated to Thijs Boekholt across app and installer</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.1.2</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Microsoft Store app updates via winget — fully unattended, Store UI never opens</li>
+        <li class="new">Separate Update all (Store) button and dashboard status for Microsoft Store source</li>
+        <li class="imp">winget and Store updates run on separate source channels to avoid duplicate upgrades</li>
+        <li class="imp">Author and copyright centralized in AppVersion for consistent branding</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.1.1</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Separate Update all (winget) and Update all (Chocolatey) buttons</li>
+        <li class="fix">Dashboard program count now updates correctly (ScanSummary notifications)</li>
+        <li class="fix">winget package list uses JSON output for reliable detection</li>
+        <li class="fix">Splash screen no longer overlaps main window at startup</li>
+        <li class="imp">Improved winget.exe discovery in WindowsApps folders</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.1.0</h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">Chocolatey integration — list, detect outdated packages, and upgrade via choco</li>
+        <li class="new">Scheduled auto-update runs via Windows Task Scheduler (daily or weekly)</li>
+        <li class="new">Silent CLI mode for scheduled tasks (<code>--scheduled --update-all</code>)</li>
+        <li class="new">Portable publish build (self-contained, no installer required)</li>
+        <li class="new">Windows installer (Inno Setup) for client deployment</li>
+        <li class="new">HTML changelog viewer built into the application</li>
+        <li class="imp">Unified program update orchestration across winget and Chocolatey</li>
+        <li class="imp">Version numbering and in-app version display</li>
+      </ul>
+    </article>
+
+    <article class="release">
+      <h2>v1.0.0 <span class="badge">Initial</span></h2>
+      <p class="date">June 15, 2026</p>
+      <ul>
+        <li class="new">WPF desktop GUI with Dashboard, Programs, Drivers, Backup, and Settings</li>
+        <li class="new">winget program detection and bulk upgrade</li>
+        <li class="new">Driver store enumeration and INF package backup (pnputil)</li>
+        <li class="new">Windows Update scan and install via USOClient</li>
+        <li class="new">Administrator elevation prompts and restart-as-admin option</li>
+      </ul>
+    </article>
+
+    <footer>
+      SuperUpdater &mdash; detect, update, and back up programs and drivers on Windows.
+    </footer>
+  </div>
+</body>
+</html>

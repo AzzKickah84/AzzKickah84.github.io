@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OutClook — Changelog</title>
+  <style>
+    :root {
+      --accent: #0F6CBD;
+      --accent-dark: #0B4A8C;
+      --accent-light: #E8F2FA;
+      --bg: #FAF9F8;
+      --surface: #FFFFFF;
+      --text: #1B1A19;
+      --text-secondary: #605E5C;
+      --border: #E1DFDD;
+      --added: #188038;
+      --added-bg: #E6F4EA;
+      --changed: #0F6CBD;
+      --changed-bg: #E8F2FA;
+      --fixed: #C5221F;
+      --fixed-bg: #FCE8E6;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+
+    .page-header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .page-header h1 {
+      margin: 0 0 .35rem;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    .page-header .subtitle {
+      margin: 0;
+      opacity: .9;
+      font-size: 1rem;
+    }
+
+    .page-header .meta {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      align-items: center;
+      font-size: .875rem;
+    }
+
+    .badge-latest {
+      background: rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.35);
+      padding: .25rem .65rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .intro {
+      max-width: 860px;
+      margin: -1.25rem auto 0;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.5rem;
+      color: var(--text-secondary);
+      font-size: .9375rem;
+    }
+
+    .intro-card a { color: var(--accent); }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    .release {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .release-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .5rem 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--accent-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .release-header h2 {
+      margin: 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    .release-header h2 code {
+      font-family: Consolas, "Segoe UI Mono", monospace;
+      font-size: 1em;
+      background: rgba(255,255,255,.6);
+      padding: .1rem .45rem;
+      border-radius: 4px;
+    }
+
+    .release-date {
+      color: var(--text-secondary);
+      font-size: .875rem;
+    }
+
+    .release-body { padding: .25rem 0 .5rem; }
+
+    .section {
+      padding: .75rem 1.25rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .section:first-child { border-top: none; }
+
+    .section-title {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: .2rem .55rem;
+      border-radius: 4px;
+      margin: 0 0 .75rem;
+    }
+
+    .section-title.added    { background: var(--added-bg);   color: var(--added); }
+    .section-title.changed  { background: var(--changed-bg); color: var(--changed); }
+    .section-title.fixed    { background: var(--fixed-bg);   color: var(--fixed); }
+    .section-title.improved { background: var(--changed-bg); color: var(--changed); }
+
+    ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    li { margin-bottom: .65rem; }
+    li:last-child { margin-bottom: 0; }
+
+    li strong { color: var(--text); }
+
+    .page-footer {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2.5rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: .8125rem;
+    }
+
+    @media (max-width: 600px) {
+      .page-header h1 { font-size: 1.5rem; }
+      .release-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <div class="page-header-inner">
+      <h1>OutClook Changelog</h1>
+      <p class="subtitle">Release history and notable changes</p>
+      <div class="meta">
+        <span class="badge-latest">Latest: v3.3.10</span>
+        <span>© Thijs Boekholt — 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="intro">
+    <div class="intro-card">
+      All notable changes to <strong>OutClook</strong> are documented here.
+      The format follows <a href="https://keepachangelog.com/">Keep a Changelog</a>,
+      and this project uses <a href="https://semver.org/">Semantic Versioning</a>.
+    </div>
+  </div>
+
+  <main>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.10</code></h2>
+        <time class="release-date" datetime="2026-06-06T00:55:00">6 June 2026, 00:55</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Hotmail manual IMAP authentication</strong> — test and sync now use the <strong>same password</strong> for incoming (IMAP) and outgoing (SMTP); switching to manual IMAP clears stale OAuth state; editing an account no longer wipes the stored password when the field is unchanged; clearer errors (including app-password vs Microsoft sign-in guidance).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.9</code></h2>
+        <time class="release-date" datetime="2026-06-06T00:34:00">6 June 2026, 00:34</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Hotmail / Outlook.com account setup</strong> — personal accounts use <strong>imap-mail.outlook.com</strong> / <strong>smtp-mail.outlook.com</strong>; Application ID and tenant fields are hidden for consumer sign-in.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Hotmail / Outlook.com (IMAP manual)</strong> and <strong>Other IMAP / POP3</strong> provider presets for app-password or fully manual server setup.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.8</code></h2>
+        <time class="release-date" datetime="2026-06-05T23:42:00">5 June 2026, 23:42</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Message table column menu</strong> — removed the separate dotted picker column; <strong>right-click any column header</strong> to show or hide columns. Menu stays open while you toggle options; left-click still sorts.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.7</code></h2>
+        <time class="release-date" datetime="2026-06-05T23:38:00">5 June 2026, 23:38</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Message table columns</strong> — click the column-picker button or right-click a header (bottom reading-pane table) to show/hide columns: Size, Attachment (paperclip), Flag, Star, Pin, Read, Category, Snooze, Important, To, Cc, Preview, Folder, and more. Choices are saved; headers still sort on click.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.6</code></h2>
+        <time class="release-date" datetime="2026-06-05T23:01:00">5 June 2026, 23:01</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Delivery rules</strong> — easier to find and configure: <strong>Settings → Rules &amp; safety → Delivery rules</strong>; right-click <strong>Run Rules</strong> for <strong>Manage delivery rules</strong>; folder menu entry; clicking <strong>Run Rules</strong> with no rules opens Settings on the rules page. Rules editor labels and intro text localized (EN/NL).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.5</code></h2>
+        <time class="release-date" datetime="2026-06-05T22:47:00">5 June 2026, 22:47</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Ctrl+Q</strong> — toggle the selected message read/unread without using the toolbar.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Customizable keyboard shortcuts</strong> — <strong>Settings → General</strong> lists every mail shortcut (and compose send); click a field, press your keys, or reset to defaults. Bindings are saved and apply immediately.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.4</code></h2>
+        <time class="release-date" datetime="2026-06-05T22:39:00">5 June 2026, 22:39</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Inbox header</strong> — filter chips aligned to the right, closer to <strong>Group by</strong>; tips line restored below the folder title.</li>
+            <li><strong>Rotating inbox tips</strong> — eight helpful hints (drag to calendar, keyboard shortcuts, search, snooze, star, folder menu, grouping) cycle every 10 minutes in English and Dutch.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.3</code></h2>
+        <time class="release-date" datetime="2026-06-05T22:33:00">5 June 2026, 22:33</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Inbox header</strong> — filter chips (All, Unread, Starred, etc.) sit on the same row as the folder title, with <strong>Group by</strong> on the right; drag-to-calendar tip moved to the folder title tooltip so the message list gets more vertical space.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.2</code></h2>
+        <time class="release-date" datetime="2026-06-05T22:15:00">5 June 2026, 22:15</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>System tray menu</strong> — live connection and server status (incoming/outgoing, last sync, accounts summary); <strong>Mark alerts as seen</strong> clears the red new-mail dot without marking messages read; <strong>Refresh mail</strong>, <strong>Reconnect</strong> (current or all accounts), <strong>View connection details</strong>, and <strong>Settings</strong> from the tray.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Tray menu performance</strong> — status snapshot uses cached status-bar data; menu rebuild is suspended during layout.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.1</code></h2>
+        <time class="release-date" datetime="2026-06-04T23:11:00">4 June 2026, 23:11</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Mail toolbar</strong> — restored the classic single-row button toolbar (no ribbon group labels). Language, About, Profile, and Settings are on the bar again; keyboard shortcuts unchanged.</li>
+            <li><strong>Settings</strong> — replaced crowded top tabs with a <strong>left navigation</strong> menu grouped into Application, Mail &amp; accounts, Rules &amp; safety, Appearance, and Advanced.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Settings layout</strong> — all pages (General, profiles, accounts, signatures, rules, blocked senders, automatic replies, mail &amp; layout, browser, data) open from one clear sidebar.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.0</code></h2>
+        <time class="release-date" datetime="2026-06-04T23:03:00">4 June 2026, 23:03</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Keyboard shortcuts</strong> — common mail actions: Ctrl+N new mail, R / Ctrl+R reply, Ctrl+Shift+R reply all, F / Ctrl+Shift+F forward, Del delete, A archive, S star, P pin, J/K or ↑/↓ move selection, F5 refresh, Ctrl+F search, Ctrl+, settings, Ctrl+1/2/3 switch modules. Compose: <strong>Ctrl+Enter</strong> send. Listed under <strong>Settings → General</strong>.</li>
+            <li><strong>Folder context menu</strong> — right-click a folder for refresh, mark all read, and settings.</li>
+            <li><strong>Quick snooze on toolbar</strong> — same 1 hour / tomorrow / next week / custom picks as the message menu.</li>
+            <li><strong>Pin on toolbar</strong> and <strong>More</strong> menu (filter sender/conversation, language, about).</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Mail ribbon</strong> — grouped into Compose, Respond, Organize, Tools, View, and App; scrolls on narrow windows; tooltips show shortcuts.</li>
+            <li><strong>Settings</strong> — <strong>Features</strong> tab renamed <strong>Mail &amp; layout</strong>; duplicate mark-as-read control removed from that tab (kept under General).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.2.1</code></h2>
+        <time class="release-date" datetime="2026-06-04T22:22:00">4 June 2026, 22:22</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Message list grouping (table view)</strong> — inbox and other folders show date/sender/subject groups again when the reading pane is at the bottom (Sender / Subject / Received columns). Group headers and counts match the card list.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Message list grouping</strong> — shared grouping helper with cached group descriptors; table view keeps pixel scrolling and turns virtualization off only while grouped so the list stays fast and scrollable.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.2.0</code></h2>
+        <time class="release-date" datetime="2026-06-04T22:08:00">4 June 2026, 22:08</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>User profiles</strong> — separate mail account sets (e.g. Work vs Personal) with <strong>Settings → Profiles</strong>: add, rename, delete, default profile, and startup choice (<strong>ask each time</strong> or <strong>always open default</strong>). Profile picker at startup when configured; <strong>Profile</strong> toolbar button to switch without restarting.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li>Accounts, reminders, and calendar sync are scoped to the active profile; new accounts are added to the profile you manage in Settings.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.9</code></h2>
+        <time class="release-date" datetime="2026-06-04T21:51:00">4 June 2026, 21:51</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Settings → Data &amp; storage</strong> — shows the local data folder (<code>%AppData%\OutlookClone</code>), lists files (e.g. <code>outlookclone.db3</code>) with sizes, <strong>Open folder</strong>, <strong>Reset database</strong> (empty DB, keep sign-in tokens), and <strong>Remove all local data</strong> (full wipe). OutClook restarts automatically with a fresh database when requested.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Local data maintenance</strong> — faster file listing, clearer wipe handling for SQLite sidecar files, file list refreshes when you open the Data &amp; storage tab.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.8</code></h2>
+        <time class="release-date" datetime="2026-06-04T21:15:00">4 June 2026, 21:15</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Add account — crystal-clear steps</strong> — numbered <strong>What to do</strong> instructions in the account dialog for Hotmail/Outlook.com (one-click and advanced paths), work/school Microsoft 365, and Gmail; dialog intro and provider hints spell out the exact order (email → sign in → test → save).</li>
+            <li><strong>Hotmail / Outlook.com sign-in</strong> — one-click <strong>Sign in with Microsoft</strong> when the installer includes a publisher app id (<code>oauth.appids.props</code>); <strong>Advanced setup</strong> only for IT/Entra registration; blocks pasting a tenant ID instead of an Application (client) ID; personal accounts keep tenant <strong>consumers</strong>.</li>
+            <li><strong>Guided Microsoft wizard</strong> — same numbered steps and clearer Entra instructions (client ID vs tenant ID).</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Microsoft OAuth errors</strong> — sign-in failures show plain-language guidance (wrong client ID, admin consent, cancelled login).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.7</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Hotmail / Outlook.com sign-in</strong> — personal Microsoft accounts use a one-click <strong>Sign in with Microsoft</strong> flow when the app is built with <code>oauth.appids.props</code> (no Entra client ID or tenant fields for most users). Advanced Entra setup stays available for IT administrators. Rejects common mistakes (e.g. pasting a tenant ID instead of an Application client ID).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.6</code></h2>
+        <time class="release-date" datetime="2026-06-04T20:42:00">4 June 2026, 20:42</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Installer wizard artwork</strong> — sidebar tagline shows proper middle dots (<code>Mail &#183; Calendar &#183; Reminders</code>) instead of garbled characters.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.5</code></h2>
+        <time class="release-date" datetime="2026-06-04T19:00:00">4 June 2026, 19:00</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Inbox empty after closing Settings</strong> — closing Settings no longer leaves the message list blank; the current folder is reloaded after the folder tree is rebuilt.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Settings close</strong> — changing only preferences (not accounts) no longer reconnects every mailbox; closing Settings is faster.</li>
+            <li><strong>Account reload</strong> — shared helper reloads messages for the selected folder after any folder-tree rebuild.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.4</code></h2>
+        <time class="release-date" datetime="2026-06-04T18:17:00">4 June 2026, 18:17</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Inbox load speed</strong> — fetches the newest messages by folder index first (no full-folder UID search on large mailboxes); falls back to a small UID range only when needed.</li>
+            <li><strong>Folder list size</strong> — loads up to <strong>100</strong> recent messages per folder (was 50).</li>
+            <li><strong>Folder open</strong> — defers writing expired snooze cleanup to the database until after the list is built (fewer SQLite writes while you wait).</li>
+            <li><strong>Organization lookup</strong> — O(1) folder+UID match without scanning every stored row.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.3</code></h2>
+        <time class="release-date" datetime="2026-06-04T18:14:00">4 June 2026, 18:14</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Inbox messages not visible (table / bottom reading pane)</strong> — temporary workaround disabled date grouping in the column list; restored in 3.2.1 with virtualization off while grouped.</li>
+            <li><strong>Large Gmail folders</strong> — loads the latest messages by IMAP UID instead of folder index only; fetch falls back when preview text is unsupported.</li>
+            <li><strong>All messages hidden by snooze</strong> — incorrect local snooze rows no longer hide an entire folder; folder path must match before snooze applies.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.2</code></h2>
+        <time class="release-date" datetime="2026-06-04T18:03:00">4 June 2026, 18:03</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Message list empty while folder shows messages</strong> — grouped table view (reading pane on bottom) now scrolls correctly so Inbox and other folders display their messages again.</li>
+            <li><strong>“No messages in this folder” overlay</strong> — hides as soon as messages load and stays hidden while a folder is loading.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Folder load performance</strong> — star, pin, category, and snooze state are loaded in one batch per account instead of one database query per message.</li>
+            <li><strong>Organization matching</strong> — local flags are matched by folder and message id more reliably (avoids applying the wrong snooze across folders).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.1</code></h2>
+        <time class="release-date" datetime="2026-06-04T17:55:00">4 June 2026, 17:55</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>App icon</strong> — new modern design (blue tile, mail envelope, calendar badge); multi-size ICO for sharp display in the taskbar, title bar, and installer.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.1.0</code></h2>
+        <time class="release-date" datetime="2026-06-04T17:50:00">4 June 2026, 17:50</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Quick mail filters</strong> — All, Unread, Starred, Attachments, Today, Important; filter by sender or conversation.</li>
+            <li><strong>Star and pin</strong> — mark messages locally; pinned messages stay at the top of the list.</li>
+            <li><strong>Categories</strong> — Important, Work, Personal, Travel, Bills (color strip in the list).</li>
+            <li><strong>Snooze</strong> — hide a message until a chosen time (toolbar, context menu, quick options).</li>
+            <li><strong>Mark all read</strong> — mark every unread message in the current folder in one action.</li>
+            <li><strong>Copy</strong> sender email or subject from the context menu.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.0.1</code></h2>
+        <time class="release-date" datetime="2026-06-04T17:39:00">4 June 2026, 17:39</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Version 3.0</strong> — major release line starting at 3.0.1 (browser module, feature toggles, and calendar/mail improvements from 2.x are included).</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Preferences</strong> — single save/notify path for settings (no redundant reload from the database).</li>
+            <li><strong>Browser</strong> — navigation is queued until WebView2 is ready; shared URL normalization.</li>
+            <li><strong>Timers</strong> — mail polling and reminder checks use one consistent enable/disable path.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.42</code></h2>
+        <time class="release-date" datetime="2026-06-04">4 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Built-in browser</strong> — browse the web inside OutClook (WebView2 module in the sidebar).</li>
+            <li><strong>Features settings</strong> — turn mail, calendar layout, notifications, confirmations, and polling on or off.</li>
+            <li><strong>Browser settings</strong> — home page URL and option to open email links in the in-app browser.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li>Delete/archive, new-mail toasts, reading pane, sidebar panes, and search bar respect feature toggles.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.41</code></h2>
+        <time class="release-date" datetime="2026-06-04T17:23:00">4 June 2026, 17:23</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Sidebar month calendar markers</strong> — appointment days (including Google Calendar events) now highlight correctly; previously only local database entries were shown.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Appointment loading</strong> — shared loader for Upcoming and the sidebar mini-calendar; avoids a duplicate Google Calendar request when Upcoming already loaded the same range.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.40</code></h2>
+        <time class="release-date" datetime="2026-06-04T17:16:00">4 June 2026, 17:16</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Sidebar month calendar</strong> — days with appointments are <strong>bold</strong>, use a light blue background, and show a dot so busy days stand out at a glance (today and the selected day keep their existing highlight).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.39</code></h2>
+        <time class="release-date" datetime="2026-06-04T17:09:00">4 June 2026, 17:09</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Message loading</strong> — one shared path decides when to fetch from the server (skips redundant downloads when body and attachments are already loaded). Mail fetch and attachment save share the same IMAP/POP3 connection logic.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Attachment save</strong> — saving uses the same attachment index as the list (fixes messages where non-file MIME parts appear before real attachments).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.38</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Message reader body</strong> — the popup window now loads the full message (including search results) and renders the body reliably in the embedded browser.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Attachments</strong> — when a message has attachments, a <strong>Bijlagen / Attachments</strong> bar appears above the reading pane and in the popup reader. Click a file name to save it to your computer (Save dialog).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.37</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Open email from search</strong> — double-clicking a search result now loads the body from the correct folder (not the selected Inbox). Shows preview text while the full message loads.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.36</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Exit search</strong> — clicking <strong>&#215;</strong> or selecting a folder (e.g. Inbox again) now clears search results and reloads the folder with normal message grouping.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.35</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Search hang and search bar UI</strong> — removed slow IMAP BODY scans, added a 45s timeout with fallback to recent local scan, and fixed the white box beside the search icon (transparent header buttons).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.34</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Mail search scope</strong> — searches sender (name and address), subject, body, To/Cc/Bcc, Reply-To, and other headers. POP3 scans more messages locally; IMAP falls back to broad text search when the server rejects detailed queries.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.33</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Startup crash</strong> — fixed missing <code>InverseBool</code> resource that prevented the main window from opening after the search toolbar change.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.32</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Mail search UX</strong> — search header stays in sync with the search box; old results clear when you start a new search. A progress window shows each folder being searched and the match count.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.31</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Mail search</strong> — search results now appear in the message list (UI update on the correct thread). Results are grouped by calendar day. Press <strong>Enter</strong> or click the search icon; account-wide search when the account is selected.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.30</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Sidebar month calendar</strong> — a compact month view below the upcoming appointments pane. Navigate months, jump to <strong>Today</strong>, click a day to open the calendar, and see dots on days that have appointments.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.29</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Block sender domain</strong> — confirming “block this domain” no longer shows an “no such function: equals” error (SQLite queries now use plain domain equality).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.28</code></h2>
+        <time class="release-date" datetime="2026-06-04T00:45:00">4 June 2026, 00:45</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li>Release build (includes block-sender domains, To-field suggestions, refresh progress window, and recent startup fixes from 2.1.23–2.1.27).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.27</code></h2>
+        <time class="release-date" datetime="2026-06-03">3 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Block junk, spam, and phishing senders</strong> — mark a message as junk, spam, or phishing to block the sender&#39;s entire mail domain. Matching mail is moved to Junk, hidden from the Inbox, and auto-quarantined on refresh. Manage blocked domains under <strong>Settings → Blocked senders</strong>.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.26</code></h2>
+        <time class="release-date" datetime="2026-06-03T21:40:00">3 June 2026, 21:40</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>To-field address suggestions</strong> — when composing mail, previously used addresses are remembered and suggested in a dropdown as you type in the <strong>To</strong> field (keyboard and mouse). Addresses are learned from sent mail, loaded messages, and compose fields.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.25</code></h2>
+        <time class="release-date" datetime="2026-06-03T20:53:00">3 June 2026, 20:53</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Refresh progress dialog error</strong> — fixed a binding error on <strong>Refresh</strong> that showed “Unexpected error” before the progress window appeared (progress bar now uses one-way bindings to read-only properties).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.24</code></h2>
+        <time class="release-date" datetime="2026-06-03T20:48:00">3 June 2026, 20:48</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Refresh progress window</strong> — clicking <strong>Refresh</strong> opens a live status dialog that shows each step (folders, messages, calendar, upcoming appointments) with a progress bar until sync completes.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.23</code></h2>
+        <time class="release-date" datetime="2026-06-03T14:22:00">3 June 2026, 14:22</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Startup crash (2.1.21–2.1.22)</strong> — column header styling no longer replaces the default WPF header template, which caused “could not open its main window” on launch.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.22</code></h2>
+        <time class="release-date" datetime="2026-06-03T14:14:00">3 June 2026, 14:14</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Startup crash (2.1.21)</strong> — fixed a XAML template error that prevented the main window from opening (“could not open its main window”). Message list grouping and table column headers work again without crashing on launch.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.21</code></h2>
+        <time class="release-date" datetime="2026-06-03T14:04:00">3 June 2026, 14:04</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Message list column headers</strong> — Sender, Subject, and Received headers show again in the table layout (reading pane at the bottom).</li>
+            <li><strong>Message list date grouping</strong> — messages are grouped by day again (Today, Yesterday, etc.) in both list and table views. New installs default to <strong>Group by: Date</strong>.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.20</code></h2>
+        <time class="release-date" datetime="2026-06-03T13:07:00">3 June 2026, 13:07</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>First-run setup blocked by splash</strong> — on a new PC the splash screen no longer stays on top of the Welcome / account setup wizard. The splash closes before the setup dialog opens so you can sign in or skip without dismissing it first.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.19</code></h2>
+        <time class="release-date" datetime="2026-06-03T02:31:00">3 June 2026, 02:31</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Message context menu</strong> — right-click a message for Open, Reply, Reply all, Forward, mark read/unread, set reminder, move to another folder, archive, delete (with confirmation), save as HTML, print, and create appointment from email.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.18</code></h2>
+        <time class="release-date" datetime="2026-06-03T02:27:00">3 June 2026, 02:27</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Save email as HTML</strong> — right-click a message in the list and choose <strong>Save as HTML…</strong> to export the full message (headers and body) to a <code>.html</code> file. Works in both list and table views; loads the body from the server when needed.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.17</code></h2>
+        <time class="release-date" datetime="2026-06-03T02:08:00">3 June 2026, 02:08</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Changelog typography</strong> — regenerated <code>CHANGELOG.html</code> from markdown so em dashes, copyright, and quotes display correctly (no more <code>&#226;€&quot;</code> mojibake).</li>
+            <li><strong>Duplicate inbox counts</strong> — unread/total for the current folder are shown only in the status bar, not repeated in the top header.</li>
+            <li><strong>New message tab order</strong> — pressing Tab in the Subject field moves focus to the message body (skipping the formatting toolbar).</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Search box</strong> — moved to the top-right of the header for quicker access.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.16</code></h2>
+        <time class="release-date" datetime="2026-06-03T01:58:00">3 June 2026, 01:58</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>New Email focus</strong> — opening a new message now places the cursor in the To field instead of the message body.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.15</code></h2>
+        <time class="release-date" datetime="2026-06-02T22:42:00">2 June 2026, 22:42</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>About dialog</strong> — splash-style About window with product version, build info, runtime details, statistics (accounts, reminders, rules, appointments), and third-party libraries. Open from the module rail, mail toolbar, header, or status bar. Includes shortcuts to view the changelog and open data/install folders.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.14</code></h2>
+        <time class="release-date" datetime="2026-06-02T21:41:00">2 June 2026, 21:41</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Upcoming appointments pane</strong> — resizable panel on the right of the main window showing calendar appointments for the next 3 weeks. Only days that have appointments are listed, grouped by date, with time, duration, location, and contact. Click an appointment to open it in the calendar editor. Includes a refresh control and stays in sync when the calendar is updated.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.13</code></h2>
+        <time class="release-date" datetime="2026-06-02T15:30:00">2 June 2026, 15:30</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Double-click to open email in its own window</strong> — double-click any message in the list to open it in a separate reader window with reply, forward, delete, archive, mark read, reminder, and print actions.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.12</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Process still running after Exit</strong> — quitting now stops mail polling and reminder timers, closes notification toasts and reader windows, releases the email WebBrowser host, and terminates the process cleanly (fixes zero-memory zombie OutClook.exe entries).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.11</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Open new mail in its own window</strong> — clicking <strong>Open</strong> on a new-mail notification now opens the message in a dedicated reader window (with print and close), without needing the main window to be visible.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.10</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Main window not appearing after splash</strong> — closing the splash no longer shuts the app down before the main window opens. The main window is shown first; the splash closes afterward. Shutdown mode is set to keep running until the main window closes.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.9</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Main window failed to open (ToLabel binding error)</strong> — localized label bindings in the reading pane and status bar now use one-way mode, which WPF requires for read-only strings.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.8</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Main window not appearing after splash screen</strong> — window creation and show now always run on the UI thread after account loading. If startup fails, you see an error message instead of a headless process. The window is also forced to the foreground on launch.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.7</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Splash screen stuck on startup</strong> — the main window and system tray icon now appear as soon as your mail accounts and folders are loaded. Message loading and out-of-office processing continue in the background instead of blocking the UI.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.6</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Folders and messages empty after startup</strong> — mail accounts and folders load completely before the main window appears, so the folder tree and inbox are populated on first paint. Inbox selection is restored reliably after reload.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Startup splash screen</strong> — a branded loading window with progress text while your mail accounts connect (replaces the previous blank main window during startup).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.5</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Main window not appearing on startup</strong> — OutClook now opens its window immediately when you start the program (while mail accounts load in the background). Starting OutClook again while it is already running in the tray brings the existing window to the front instead of only showing an &quot;already running&quot; message.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.4</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Mail and calendar content not appearing</strong> — fixed reading-pane layout leaving the message list collapsed (especially with pane-on-bottom mode). Welcome screen no longer overlays your folders when accounts exist. Folder selection and message load are re-applied when the window opens. Reduced overly strict minimum widths that could squeeze the folder tree off-screen on some displays.</li>
+            <li><strong>Calendar empty on first open</strong> — calendar data is refreshed when you switch to the Calendar module after startup.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Toolbar icons</strong> — each command now has a soft tinted icon badge (blue, green, purple, gold, orange, red) so buttons are easier to tell apart at a glance, even when disabled.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.3</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Mail folders and messages not visible</strong> — removed the startup overlay that could cover the folder tree and message list after accounts loaded. The reading-pane layout is applied immediately so the message list and preview are not stacked on top of each other before the window opens. Reloading accounts no longer briefly clears the folder tree (which could flash the welcome screen over your mail).</li>
+            <li><strong>Status bar technical row clipped</strong> — increased status bar height so connection, server, auth and sync details on the second row are fully visible again.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Print message</strong> — toolbar <strong>Print</strong> button (and the same action in the reading pane) opens the standard print dialog; choose <strong>Microsoft Print to PDF</strong> to save the message as a PDF.</li>
+            <li><strong>Pictures in email load automatically</strong> — remote images in HTML messages are shown by default without a download prompt.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Toolbar icons</strong> — subtle accent colours on command-bar icons so actions are easier to tell apart at a glance.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.2</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Blank main window on startup</strong> — mail accounts and folders now load before the window appears, with a loading indicator instead of the empty welcome screen. Database access waits up to 10 seconds if another process briefly locks the file. Startup errors are shown in the status bar instead of failing silently.</li>
+            <li><strong>Single-instance mutex after force-close</strong> — restarting OutClook after a crashed or force-killed process no longer incorrectly reports &quot;already running&quot; and refuses to start.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.1</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Installer &quot;Access is denied&quot; on upgrade</strong> — OutClook stayed running in the system tray and blocked replacement of its files (e.g. <code>clrjit.dll</code>), which could leave a broken install. The app now exits properly when Windows or the installer requests shutdown; the installer force-closes any running copy before updating; only one instance can run at a time.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.1.0</code></h2>
+        <time class="release-date" datetime="2026-06-01">1 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Out of office (toolbar)</strong> — one-click automatic reply for the current mail account. Toolbar <strong>Out of office</strong> button opens a quick setup dialog with on/off toggle, message templates (standard, vacation, short absence), optional date range, subject and body. Active OOF shows a gold icon and <strong>OOF: On</strong> label. Full multi-account setup remains in Settings &#226;†’ Automatic replies. Localized in English and Dutch.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>2.0.0</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>About OutClook</strong> — new About dialog (toolbar <strong>About</strong> button, or click the title/version/copyright in the header or status bar). Shows version, build date, runtime (.NET, OS, architecture), install and data folders, database path, UI language, mail account / reminder / rule / appointment counts, third-party libraries, and quick links to open the changelog, data folder or install folder. Fully localized in English and Dutch.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.18</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Dutch interface</strong> — toolbar button (<strong>Nederlands</strong> / <strong>English</strong>) switches the whole main UI between English and Dutch instantly. Covers the mail toolbar, module rail, search bar, folder panel, message list, reading pane, welcome screen, calendar view, status bar and date grouping labels. Your choice is remembered across restarts.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.17</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>System tray</strong> — OutClook stays in the notification area while running. Closing the window hides to the tray; double-click or <strong>Open OutClook</strong> restores it. <strong>Exit</strong> quits from the tray. A badge appears on the tray icon when new unread mail arrives and clears when that mail is marked read.</li>
+            <li><strong>Mark-as-read preference</strong> — Settings &#226;†’ General: turn off <em>Mark messages as read when selected</em> to keep messages unread until you use the toolbar.</li>
+            <li><strong>Calendar appointment colors</strong> — right-click an appointment and pick a color from the preset palette (applies to the whole recurring series). Current color is shown with a checkmark.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li>Toolbar read/unread button now shows <strong>Mark as Read</strong> or <strong>Mark as Unread</strong> depending on the selected message.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.16</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Richer status bar</strong> — two-row layout with persistent folder stats: unread/total from the server, how many messages are shown, attachments, flagged and today counts, account-wide unread, active delivery rules and multi-account summaries. Selected-message details on the second row. Reminder counts (active and overdue). Calendar view shows appointments in range and selected-day counts.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.15</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Status bar technical details</strong> — the bottom status bar now shows connection state, account email, incoming/outgoing server (host, port, security), auth method, last sync and last background poll times. Multi-account summary when no folder is selected. Calendar sync status when the calendar module is active. Hover the bar for full details.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.14</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Mail account setup no longer shows dead-end options</strong> — removed the unusable &quot;Outlook.com / Hotmail (IMAP password)&quot; preset (Microsoft disabled password login). Entering a Hotmail/Outlook.com or work Microsoft 365 address while password auth is selected now automatically switches to the correct OAuth preset.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.13</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Office 365 company / work accounts</strong> — sign in with work or school Microsoft 365 mail (e.g. <code>you@company.com</code>) via a dedicated guided setup wizard. Uses the correct OAuth tenant (<code>organizations</code> or your company&#39;s tenant ID) and Exchange Online scopes for IMAP/SMTP. New <strong>Sign in to Office 365</strong> buttons on the welcome screen and first-run setup.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li>The Microsoft sign-in wizard now adapts to personal Hotmail/Outlook.com vs work/school accounts (tenant, setup steps and error messages).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.12</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Email links open in a modern browser</strong> — clicking a link in the reading pane no longer opens Internet Explorer. Links are launched in Microsoft Edge, Google Chrome or Mozilla Firefox (whichever is installed), in that order.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.11</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Calendar crash on open or click</strong> — &quot;The added or subtracted value results in an un-representable DateTime&quot; when opening the calendar or clicking a day/appointment (especially with recurring events such as weekly series). Date calculations for the grid, recurrence expansion and multi-day events are now bounded and safe.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.10</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Reading pane stuck on &quot;Loading&#226;€&#166;&quot;</strong> — after selecting a message, the body was fetched from the server but the reading pane never updated to show it (a performance cache skipped the refresh once the body arrived). Message content now displays correctly.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.9</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Performance improvements</strong> across mail, calendar and background services — same features, noticeably faster: - <strong>Calendar</strong> — faster grid rendering; prev/next week scrolls within the loaded grid instead of refetching Google Calendar every time; calendar data loads when you open Calendar (not at startup); recurring series expand more efficiently for long-running appointments. - <strong>Mail</strong> — message list virtualization for large folders; lighter new-mail polling (headers only); faster reminder matching when loading a folder; reading pane skips redundant HTML reloads. - <strong>Background</strong> — appointment reminder checks use targeted database queries; OAuth clients are cached so token refresh is faster.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.8</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Guided Hotmail / Outlook.com sign-in wizard</strong> — same style as Gmail: numbered Entra setup steps, links to register the app and enable IMAP, Client ID field, then <strong>Sign in with Microsoft</strong>. Available from the welcome screen, first-run setup, and <strong>Open guided Hotmail / Outlook.com setup</strong> in the account dialog.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li>The account dialog now remembers a saved Microsoft Client ID and shows a short &quot;where do I get this?&quot; guide with a direct link to Entra app registrations.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.7</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Outlook.com / Hotmail (OAuth) provider preset</strong> with tenant <code>consumers</code> for personal Microsoft accounts (<code>@hotmail.com</code>, <code>@outlook.com</code>, <code>@live.com</code>).</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Hotmail and Outlook.com sign-in</strong> — the account dialog now warns that password login no longer works, blocks saving password-based consumer accounts, auto-selects tenant <code>consumers</code> for personal addresses, and corrects <code>organizations</code> &#226;†’ <code>consumers</code> at sign-in time.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Office 365 OAuth preset</strong> is now clearly labelled for work/school accounts (<code>organizations</code> tenant).</li>
+            <li>The old IMAP password preset is renamed and explains that OAuth is required for personal Microsoft mail.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.6</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Right-click a connection error in the folder tree</strong> (e.g. &quot;LOGIN failed&quot;) to <strong>Edit account settings</strong> or <strong>Try again</strong> without opening Settings first.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.5</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Received date now includes the year</strong> in the message list Received column, the reading pane, and the compact list view (for messages not from today).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.4</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Recurring Google Calendar events</strong> no longer show a contradictory &quot;Does not repeat&quot; dropdown when the event is part of a series; recurrence is shown only in the blue banner.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>New application icon</strong> — envelope + calendar design for the app, taskbar, windows and installer.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.3</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Recurring appointments are visible in the calendar.</strong> A repeat icon (&#226;†&#187;) appears on appointment chips for both local series and Google Calendar recurring events.</li>
+            <li><strong>Recurring details in the appointment dialog.</strong> When you open an occurrence, a banner shows the repeat pattern (e.g. &quot;Repeats every week&quot;) and which occurrence you clicked. Local appointments can be set to repeat daily, weekly, monthly, or yearly, with an optional end date.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.2</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>First-of-month markers in the calendar.</strong> The 1st of each month has a blue left border, tinted background, month abbreviation (e.g. &quot;Jun&quot;), and bold date number so months are easy to spot while scrolling.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.1</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Calendar month title while scrolling.</strong> The toolbar now shows the correct month and year as you scroll through the calendar; day shading for in/out-of-month dates updates to match.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.9.0</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Full-year calendar scrolling</strong> — month view loads a full year (52 weeks before and after the current week) and automatically loads more weeks as you scroll to the edges.</li>
+            <li><strong>Rich appointment editor</strong> — double-click a day to open a detailed form: person, company, email, phone, location, notes, and <strong>reminder</strong> with presets (5 min &#226;€&#166; 1 week) or custom minutes/hours/days before the appointment. Appointment reminders show a pop-up toast.</li>
+            <li><strong>New mail notifications</strong> — a pop-up toast appears when a new message arrives in your inbox (checked every 60 seconds). Click <strong>Open</strong> to jump to the message.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.8.7</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Calendar scroll in month view.</strong> Week rows no longer stretch to fill the window (they use a fixed height in a stack), so the grid scrolls vertically. Month view shows a rolling 26-week window; the mouse wheel and prev/next arrows advance <strong>one week at a time</strong> (not one month).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.8.6</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Calendar crashed with hundreds of &quot;Unexpected error&quot; dialogs.</strong> Google Calendar events triggered a TwoWay binding on the read-only <code>TimeRangeLabel</code> property (one error per event). Bindings are now OneWay and binding errors on read-only properties no longer spawn dialog floods.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.8.5</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Google Calendar sign-in succeeds but events still don&#39;t load.</strong> The browser OAuth step was working; the failure was Google rejecting Calendar API calls because the <strong>Google Calendar API is not enabled</strong> in your Google Cloud project (same project as your Client ID). OutClook now detects this specifically, shows a clear dialog, and adds an <strong>Enable in Google Cloud</strong> button. Gmail setup instructions now also mention enabling the Calendar API and adding its scope on the OAuth consent screen.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.8.4</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Google Calendar sign-in stuck on account chooser.</strong> Calendar connect now uses a custom loopback OAuth flow with <code>login<em>hint</code> (your OutClook email address) so Google opens the consent screen for the correct account instead of looping on &quot;Choose an account&quot;. Existing Gmail access is kept (<code>include</em>granted_scopes</code>); only calendar permission is added.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.8.3</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Endless Google sign-in loop (multiple browser tabs).</strong> Connecting Google Calendar cleared all cached tokens, which made mail folder loading open a second (and third) browser window at the same time. Google sign-in is now serialized (one browser at a time), calendar refresh never opens a browser on its own, and only the account you connect is affected.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.8.2</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Google Calendar consent loop.</strong> After clicking Allow in the browser, OutClook immediately opened the consent screen again. The connect flow now runs once, uses the fresh token directly (no second browser prompt), and the Connect button is disabled while waiting.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.8.1</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Google Calendar kept asking to &quot;sign in again&quot; without working.</strong> The old Gmail token (mail-only) was reused even when you clicked Sign in again. OutClook now clears the cached Google token before a fresh sign-in and shows a <strong>Connect Google Calendar</strong> button when calendar access is missing. Opening Calendar also triggers one automatic re-consent attempt.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.8.0</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Google Calendar sync for Gmail accounts.</strong> The calendar now loads events from your Google Calendar (primary calendar) alongside local OutClook appointments. Events appear in month and week view with your account colour; click one to view details (read-only — edit in Google Calendar). A refresh button reloads events; opening the Calendar module refreshes automatically.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Calendar is now scrollable.</strong> The month/week grid scrolls vertically when it doesn&#39;t fit the window; week view uses taller day rows, and busy days scroll their appointment list internally.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li>Gmail sign-in now also requests <strong>read-only Google Calendar</strong> access. If your events don&#39;t appear, enable the <strong>Google Calendar API</strong> in Google Cloud Console (same project as Gmail) and sign in to Gmail again in OutClook to grant calendar permission.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.7.1</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Clearer modern sign-in labels in &quot;Add a mail account&quot;.</strong> The confusing, provider-mixed &quot;Registration code (Google: Client ID)&quot; / &quot;Registration key&quot; fields now adapt to the selected provider: Microsoft shows <strong>Application (client) ID</strong> with Entra guidance, Google shows <strong>Client ID</strong> + <strong>Client secret</strong> with Google Cloud Console guidance. Added a plain-language explanation that this is a one-time app registration (not your mailbox password) and a &quot;Where do I get this?&quot; link to the right console.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.7.0</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Rich-text composing.</strong> Composing, replying and forwarding now use a full formatting toolbar: font family and size, <strong>bold</strong>/<em>italic</em>/underline/strikethrough, text colour (palette), bulleted and numbered lists, left/center/right alignment, indent/outdent and a &quot;Clear formatting&quot; button. The toolbar reflects the formatting at the cursor, and messages are sent as HTML (with a plain-text alternative for older clients).</li>
+            <li><strong>Working search box.</strong> The search box in the title bar now searches the current folder for the word(s) you type (press Enter). Each word is matched against the subject, body, sender and recipients on the server (IMAP); press Esc or use the clear (&#226;œ•) button to return to the folder. POP3 accounts fall back to searching the downloaded messages.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.6.0</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Group the message list.</strong> A new <strong>Group by</strong> dropdown above the message list lets you organise mail by: - <strong>Date</strong> — Outlook-style buckets (Today, Yesterday, This week, Last week, This month, older months). - <strong>Sender</strong> — grouped by the sender&#39;s name. - <strong>Subject</strong> — conversation-style grouping with <code>Re:</code>/<code>Fwd:</code> prefixes stripped so replies sit together. - <strong>Keyword</strong> — buckets messages by the most significant word in the subject. Each group shows a subtle header with a message count, and the choice is remembered between sessions. Grouping works in both the right-pane and bottom-pane (column) layouts, and combines with column sorting.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.5.0</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Choose where the reading pane goes.</strong> A new <strong>Pane</strong> button in the toolbar toggles between the classic layout (message list on the left, reading pane on the right) and a bottom layout (message list on top, reading pane below). The choice is remembered between sessions.</li>
+            <li><strong>Sortable column view.</strong> When the reading pane is on the bottom, the message list switches to a table showing <strong>Sender</strong>, <strong>Subject</strong> and <strong>Received</strong> columns. Click a column header to sort (click again to reverse); columns can also be resized. Attachment and reminder markers are shown inline in the Subject column.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.4.3</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Inbox and folders sometimes didn&#39;t appear after sign-in.</strong> Folder enumeration could fail silently (an error while listing the mailbox tree was swallowed), leaving the account with no folders, no selected Inbox, and an empty reading pane. The Inbox is now always added directly once authenticated — so your mail is reachable even if listing the rest of the tree hiccups — the remaining folders are enumerated tolerantly per namespace, and the account is expanded and its Inbox selected automatically.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.4.2</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Welcome screen stayed up after a successful sign-in.</strong> After adding the first account (e.g. via &quot;Sign in to Gmail&quot;), the inbox loaded in the background but the empty &quot;Welcome to OutClook&quot; screen never went away because the <code>HasAccounts</code> state wasn&#39;t re-evaluated once an account was added. The view now refreshes as soon as an account appears, so your mailbox and folders show up immediately.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.4.1</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Gmail OAuth connection test no longer fails on SMTP</strong> with <code>501 5.5.2 Cannot Decode response</code>. The OAuth SASL token is single-use, but the connection test reused one instance for both IMAP and SMTP; a fresh token mechanism is now created for each connection.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.4.0</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Gmail sign-in now uses your browser (&quot;Sign in with Google&quot;).</strong> This is the reliable method for accounts with 2-Step Verification and for <strong>Google Workspace</strong> domains where App Passwords are blocked by the administrator (which produced the &quot;Application-specific password required&quot; / &quot;App passwords not available&quot; dead-end). No password or App Password is stored on this PC.</li>
+            <li>The OAuth app registration (Client ID + secret) is now a <strong>one-time setup</strong> entered by the administrator and remembered (encrypted) — afterwards everyone simply clicks <strong>Sign in with Google</strong>. Includes step-by-step guidance to create an <strong>Internal</strong> OAuth client (no Google review required for your own domain).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.3.3</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Gmail App Password guidance corrected.</strong> The help now explains the steps in the right order: <strong>turn on 2-Step Verification first</strong>, <em>then</em> create an App Password (this is why Google&#39;s App Passwords page showed &quot;not available&quot; for accounts without 2-Step on). Added a direct link to enable 2-Step Verification.</li>
+            <li>Added a note that <strong>work/school (Google Workspace) accounts</strong> may need an administrator to allow App Passwords, and that <strong>non-Google mailboxes</strong> should use &quot;Add another account&quot;.</li>
+            <li>The sign-in dialog now scrolls and is taller so the guidance is never clipped.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.3.2</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Clearer Gmail sign-in</strong> for new users: - Numbered steps (1. email address, 2. password) with an in-field <code>name@gmail.com</code> hint. - <strong>Show / Hide password</strong> button to verify what you typed. - Reassurance note that the password is stored encrypted on this PC and never shared. - Plain-language <strong>2-step verification</strong> help with step-by-step App Password instructions. - Friendlier error messages (wrong password, no internet, malformed address) and <strong>Enter</strong> to sign in / <strong>Esc</strong> to cancel.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.3.1</code></h2>
+        <time class="release-date" datetime="2026-05-31">31 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Gmail sign-in simplified</strong> — just enter your <strong>email address and password</strong>. No more Google Cloud registration codes or developer keys.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.3.0</code></h2>
+        <time class="release-date" datetime="2026-05-30">30 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Initial setup wizard</strong> on first launch when no accounts are configured yet, with a prominent <strong>Import Gmail account</strong> option (Google OAuth sign-in).</li>
+            <li>Dedicated <strong>Gmail import dialog</strong> with saved OAuth credentials for repeat use.</li>
+            <li><strong>Import Gmail account</strong> button on the empty-state welcome screen.</li>
+            <li><strong>Branded Windows installer</strong> with custom wizard artwork, getting-started page, desktop shortcut option, and versioned <code>OutClookSetup-1.3.0.exe</code> output.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.2.0</code></h2>
+        <time class="release-date" datetime="2026-05-30">30 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Per-message action bar</strong> in the reading pane: <strong>Reply, Reply All, Forward, Delete, Archive</strong> and <strong>Set Reminder</strong> are shown right above the message whenever a mail is selected.</li>
+            <li>Compose / reply / forward now always shows the <strong>From, To, Cc and Bcc</strong> fields by default (Bcc is wired through to sending).</li>
+            <li>Subtle <strong>&#194;&#169; Thijs Boekholt - 2026</strong> credit in the bottom-right status bar.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Renamed the application to OutClook</strong> (executable, product name, window title, installer and shortcuts).</li>
+            <li>New <strong>app icon</strong>: an envelope fused with a clock — a nod to <em>OutClook</em> and its calendar/reminder features.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.1.0</code></h2>
+        <time class="release-date" datetime="2026-05-30">30 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>OAuth 2.0 sign-in</strong> for Gmail and Microsoft accounts (no app password needed): - Microsoft / <strong>Office 365 organization</strong> accounts via MSAL (work &amp; school accounts, configurable tenant). - Gmail via Google&#39;s loopback OAuth flow. - IMAP/SMTP authenticate with <code>XOAUTH2</code>; tokens are cached and refreshed automatically.</li>
+            <li><strong>Calendar module</strong> with an Outlook-style module switcher (Mail / Calendar): - <strong>Month</strong> and <strong>Week</strong> views, both showing <strong>ISO week numbers</strong>. - Navigate previous / next / today; click a day or time slot to add an appointment. - <strong>Add/edit appointments</strong> (title, location, start/end, all-day, notes). - <strong>Drag an email from the message list onto the calendar</strong> to instantly turn it into an appointment, pre-filled with the subject and body.</li>
+            <li><strong>Automatic replies (Out of Office)</strong> per account: enable/disable, optional active date range, custom subject and message. Replies are sent once per sender while active.</li>
+            <li><strong>Office 365 organization</strong> compatibility (modern auth via OAuth, <code>outlook.office365.com</code>).</li>
+            <li><strong>Versioning</strong>: centralized version metadata and this changelog. The version is shown in the title bar and Settings.</li>
+            <li>A <strong>fancy Windows installer</strong> (Inno Setup) with Start Menu and optional desktop shortcut, built from a self-contained publish and stamped with the product version.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>1.0.0</code></h2>
+        <time class="release-date" datetime="2026-05-30">30 May 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li>Initial Windows desktop email client (WPF, .NET 9) styled after Outlook.</li>
+            <li>Add any <strong>IMAP</strong> or <strong>POP3</strong> account with <strong>SMTP</strong> sending; provider presets for Gmail, Outlook.com, Yahoo, iCloud and Fastmail, plus a custom option.</li>
+            <li>Outlook-style layout: top command bar, per-account folder tree, message list and a separate reading pane that renders HTML email.</li>
+            <li><strong>Reminders tied to individual emails</strong> with due date/time, flags, a due-reminder toast and a reminders list.</li>
+            <li><strong>Settings</strong> with tabs for Accounts, Signatures and Delivery Rules.</li>
+            <li>Passwords encrypted at rest with Windows DPAPI; local SQLite storage.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    OutClook · Changelog · © Thijs Boekholt — 2026
+  </footer>
+</body>
+</html>
