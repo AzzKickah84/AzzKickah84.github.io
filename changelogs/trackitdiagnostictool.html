@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track-It Diagnostic Tool - Changelog</title>
+  <link rel="stylesheet" href="../assets/site.css?v=4">
+  <style>
+    body { padding: 1.5rem 2rem 3rem; }
+    .changelog-wrap { max-width: 760px; margin: 0 auto; }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .panel h2 { margin: 0 0 0.35rem; font-size: 1rem; }
+    .date { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.75rem; }
+    ul { margin: 0; padding-left: 1.15rem; color: var(--muted); }
+    li { margin: 0.3rem 0; }
+    .breadcrumb { margin-bottom: 1rem; font-size: 0.82rem; color: var(--muted); }
+    .breadcrumb a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="changelog-wrap">
+    <nav class="breadcrumb"><a href="../index.html">Downloads</a> / Track-It Diagnostic Tool changelog</nav>
+    <h1>Track-It Diagnostic Tool</h1>
+    <p style="color:var(--muted)">Standalone Windows app for checking and repairing Numara Track-It! 8 Technician Client standalone installations.</p>
+    <section class="panel">
+      <h2>Version 1.2.3</h2>
+      <p class="date">June 2026</p>
+      <ul>
+        <li>Installer: <code>TrackItDiagnosticToolSetup-1.2.3.exe</code> â€” compiled WPF desktop app (no PowerShell launcher window).</li>
+        <li>Checks installation paths, StubServer, SQL Express, TCP 9010 services, demo license, and technician login.</li>
+        <li>Repairs reuse ModernSetup scripts: services, database, SQL protocols, configuration, license, and full recovery.</li>
+        <li>Export full diagnostic log to ProgramData.</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>Version 1.2.0</h2>
+      <p class="date">June 2026</p>
+      <ul>
+        <li>Initial standalone diagnostic tool with single-instance guard and administrator restart.</li>
+        <li>Bundled ModernSetup repair and test scripts.</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
