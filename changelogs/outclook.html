@@ -198,7 +198,7 @@
       <h1>OutClook Changelog</h1>
       <p class="subtitle">Release history and notable changes</p>
       <div class="meta">
-        <span class="badge-latest">Latest: v3.3.12</span>
+        <span class="badge-latest">Latest: v3.3.18</span>
         <span>© Thijs Boekholt — 2026</span>
       </div>
     </div>
@@ -213,6 +213,123 @@
   </div>
 
   <main>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.18</code></h2>
+        <time class="release-date" datetime="2026-06-18">18 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Image attachment context menu</strong> — right-click an image preview or attachment row for <strong>View full screen</strong>, <strong>Open</strong>, <strong>Open with…</strong>, <strong>Edit in Paint…</strong>, <strong>Save as…</strong>, <strong>Copy image</strong>, <strong>Copy file</strong>, and <strong>Show in folder</strong>. Double-click the preview for full screen.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.17</code></h2>
+        <time class="release-date" datetime="2026-06-21T03:04:00">21 June 2026, 03:04</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Double-click to open message</strong> — the reader window opens immediately again instead of waiting for attachment preview downloads to finish.</li>
+            <li><strong>Attachment bar</strong> — shows as soon as a message has attachments (paperclip flag), including in the reading pane and separate message window.</li>
+            <li><strong>Image preview loading</strong> — fetches the message once for all image previews instead of one full download per attachment; preview errors no longer block opening mail.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.16</code></h2>
+        <time class="release-date" datetime="2026-06-21T02:44:00">21 June 2026, 02:44</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title fixed">Fixed</div>
+          <ul>
+            <li><strong>Startup crash after upgrade</strong> — fixed a delegate signature mismatch on the attachment preview control that prevented the main window from opening (&quot;Cannot bind to the target method…&quot;).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.15</code></h2>
+        <time class="release-date" datetime="2026-06-21T02:35:00">21 June 2026, 02:35</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Image attachment preview</strong> — JPG, PNG, GIF, BMP and other image attachments show an inline thumbnail in the reading pane and message window; no need to save first. A <strong>Save as…</strong> button remains on each attachment.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title improved">Improved</div>
+          <ul>
+            <li><strong>Attachment bar</strong> — image previews load automatically when you open a message; large files (&amp;gt; 15 MB) show a save link only.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.14</code></h2>
+        <time class="release-date" datetime="2026-06-21T02:29:00">21 June 2026, 02:29</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Professional installer</strong> — redesigned setup wizard with license agreement, getting-started and post-install guides, English and Dutch UI.</li>
+            <li><strong>Installation types</strong> — Full (recommended), Compact (application only), or Custom component selection.</li>
+            <li><strong>Setup options</strong> — optional desktop shortcut, extra Start Menu shortcuts, and launch at Windows startup.</li>
+            <li><strong>Post-install choices</strong> — launch OutClook, run account setup wizard, view changelog or Getting Started guide.</li>
+            <li><strong>Upgrade detection</strong> — installing over an existing version shows an upgrade notice and preserves mail settings.</li>
+            <li><strong>Smart uninstall</strong> — optional prompt to keep or remove personal data in <code>%AppData%\OutlookClone</code>.</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>Start Menu folder</strong> — customizable during setup; documentation (changelog, readme, license) available as an optional component.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="release">
+      <div class="release-header">
+        <h2><code>3.3.13</code></h2>
+        <time class="release-date" datetime="2026-06-18">18 June 2026</time>
+      </div>
+      <div class="release-body">
+        <section class="section">
+          <div class="section-title added">Added</div>
+          <ul>
+            <li><strong>Account setup wizard</strong> — step-by-step first-run wizard to connect Gmail, Hotmail/Outlook.com, Office 365, or any IMAP/POP3 provider.</li>
+            <li><strong>Simplified OAuth setup</strong> — Gmail and Hotmail flows ask only for a Client ID (and Gmail client secret); no long Entra or Google Cloud walkthroughs in the wizard.</li>
+            <li><strong>Start Menu → Add mail account</strong> — runs the setup wizard anytime (<code>--setup</code>).</li>
+          </ul>
+        </section>
+        <section class="section">
+          <div class="section-title changed">Changed</div>
+          <ul>
+            <li><strong>First launch</strong> — opens the account setup wizard instead of Settings, so new installs can connect mail immediately.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
 
     <article class="release">
       <div class="release-header">
