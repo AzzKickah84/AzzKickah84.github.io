@@ -21,6 +21,107 @@
 
 All notable changes to Galgje (Hangman) are documented in this file.
 
+## [7.0.3] - 2026-06-17
+
+### Added
+- **Insights play-by-play** — selecting a word shows a full game timeline: who guessed which letter, correct/wrong/repeat, and a visual guess strip (with game picker when a word was played multiple times)
+
+## [7.0.2] - 2026-06-17
+
+### Fixed
+- **Copy Last Game Image** (and all other stats image clipboard exports) no longer hang — `ClipboardExportHelper.SetImage` called itself recursively instead of the clipboard API
+- Export no longer re-parses the entire game log on every copy; live session is flushed only when needed
+- Last-game stats image builds the “tonight” leaderboard once per render instead of per player
+
+## [6.8.17.20260617] - 2026-06-17
+
+### Changed
+- In-game pop-up messages (wrong guess, new game, game over, etc.) use the modern dark style matching the Word Progress window
+
+## [6.8.16.20260617] - 2026-06-17
+
+### Fixed
+- Insights word list now shows **all played words** (including the live/current game and `played_words.txt`), not only words where the selected player guessed
+- Player Manager syncs game log on open when history looks incomplete
+
+### Changed
+- Stats clipboard exports also in **Tools** menu and on the **Insights** tab header for easier discovery
+
+## [6.8.15.20260617] - 2026-06-17
+
+### Added
+- **Copy Last Game Report** — clipboard export with per-player stats, pairwise comparisons, career snapshot, and guess timeline (Edit menu + Player Manager → Tools)
+- **Copy All-Time Report** — full career standings, guess-history leaderboard, top rivalries, and league table for pasting elsewhere
+
+## [6.8.14.20260617] - 2026-06-17
+
+### Fixed
+- Game log parser now splits history on every word selection (not only &quot;new game&quot; markers), recovering thousands of past words from `hangman_log.txt`
+- Insights word list includes games you joined or guessed in (up to 500 words); history cache auto-rebuilds with parser v2
+
+## [6.8.13.20260617] - 2026-06-17
+
+### Fixed
+- Leaderboard scatter chart crash (`Pen` dispose on shared GDI object)
+- Insights word selection now updates letters, rivals, donut chart, and heatmap for the selected word
+
+## [6.8.12.20260617] - 2026-06-17
+
+### Changed
+- **Settings**, **About**, and in-game message dialogs now use classic Windows grey (WinME) styling
+- Closing progress dialog matches classic theme
+
+### Added
+- **Player Manager → Explore** — search words in history, see who played and won
+- **Player Manager → Teams** — team standings and team-vs-team charts
+- **Multi-player compare** (up to 4) on Compare tab
+- Leaderboard **Tonight only** filter and **accuracy vs win rate** scatter plot
+- Quick action buttons on All Players (Compare, Insights, History, Copy stats)
+- Tools: copy league table, tonight summary, export full history JSON
+
+## [6.8.11.20260617] - 2026-06-17
+
+### Fixed
+- Player Manager crash on open (`Parameter is not valid` font error) on high-DPI displays
+- Shared UI font accidentally disposed by chart/guess-flow paint code
+
+## [6.8.10.20260617] - 2026-06-17
+
+### Added
+- **Leaderboard** tab with sortable rankings, live bar charts, monthly activity line graph, and Hall of Fame badges
+- **Compare** tab — head-to-head player duel with radar chart and side-by-side stat bars; copy rivalry report
+- **Guess flow strip** — coloured visual timeline of every letter in Word History
+- **Insights donut chart** — correct / wrong / repeat guess breakdown per player
+- Player profile summary line (streaks, favourite letter, nemesis) on Insights tab
+
+## [6.8.9.20260617] - 2026-06-17
+
+### Added
+- **Word guess tracking** — every letter guess per word is recorded live and parsed from `hangman_log.txt`
+- **Player Manager → Word History** tab: recent games, per-game guess timeline, player filter, copy game report
+- **Player Manager → Insights** tab: letter heatmap, top letters, words played, rival/nemesis stats, tonight&#39;s MVP
+- History survives player rename, merge, and delete; cached in `word_game_history.json`
+
+## [6.8.8.20260622] - 2026-06-22
+
+### Changed
+- **Player Manager** redesigned with classic Windows-style layout (grey panels, GroupBoxes, Tahoma)
+- Clear left/right split: player list on the left, editable details on the right
+- Labels above fields, grouped sections, ListView matching the main application
+
+## [6.8.7.20260622] - 2026-06-22
+
+### Added
+- **Player Manager** (Players → Player Manager, Ctrl+Shift+P) — full roster, stats, profiles, and tools
+  - Edit names, display names, teams, tags, notes, colors, ratings, favorites, archive status
+  - Tonight&#39;s roster with apply-to-game, default roster save, and random team generator
+  - Active-game controls, merge players, export JSON, reset stats/achievements
+- Player profiles stored in `%LocalAppData%\Galgje\player_profiles.json`
+
+### Changed
+- Setup restore option text simplified (no player names in installer task label)
+- Installer filename auto-suffix (`.1`, `.2`, …) when the same version is built again
+
 ## [6.8.6.20260622] - 2026-06-22
 
 ### Changed
