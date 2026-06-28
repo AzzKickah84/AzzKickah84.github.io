@@ -21,6 +21,35 @@
 
 All notable changes to Galgje (Hangman) are documented in this file.
 
+## [7.3.6] - 2026-06-28
+
+### Fixed
+- **Stats set switching** — Notes and game log now properly switch to the correct set&#39;s files when changing active stats set
+- File paths (hangman_log.txt, notes.txt, played_words.txt) now dynamically update to point to the new active set&#39;s directory
+
+## [7.3.5] - 2026-06-28
+
+### Fixed
+- **Players menu** now shows all player management options again (was only showing &quot;Show Stats&quot; because menu items were being moved to Tools submenu, which removed them from their original menu)
+- **BigBoots auto-loading on startup** — Removed automatic loading of default_players.ini on startup. Players list now starts empty when program launches (users explicitly add players via UI)
+
+## [7.3.4] - 2026-06-28
+
+### Added
+- Players menu repopulated with player management options
+- New &quot;Show Stats of Selected Player&quot; option in Players menu — displays stats for the currently selected player from either the game list or stats tab
+- All player actions (Add/Remove/Eliminate/Mark Winner/Set Errors/Un-eliminate/Reset) back in Players menu
+
+### Fixed
+- Status bar (bottom-left) text color changed from light gray to dark blue for much better readability
+
+## [7.3.3] - 2026-06-28
+
+### Added
+- All player actions now accessible from Tools menu: Add/Remove/Eliminate/Mark Winner/Set Errors/Un-eliminate/Reset Stats
+- Player management (Player Manager, Compare, Export Stats) also added to Tools menu for quicker access
+- New &quot;Player Actions&quot; submenu under Tools for cleaner organization
+
 ## [7.3.2] - 2026-06-28
 
 ### Fixed
