@@ -21,6 +21,275 @@
 
 All notable changes to Galgje (Hangman) are documented in this file.
 
+## [7.3.2] - 2026-06-28
+
+### Fixed
+- Fixed the missing &quot;TO&quot; (destination) panel — both player lists are now always visible side by side
+- The Copy button now actually works (it was a placeholder before), with an option to reset stats to zero on copy
+- Move now asks for confirmation and reports exactly which players transferred
+
+### Improved (Stats Sets Manager — full redesign)
+- Single, no-tabs screen: pick players on the left (FROM), choose destination on the right (TO), and use the big Copy / Move buttons in the middle
+- Authentic Windows 2000 look: classic navy-to-blue gradient title banner, etched separators, sunken 3D list/borders, silver (#D4D0C8) background
+- The FROM set doubles as the set you manage — New / Rename / Delete / Activate all act on it, so there is one obvious place for everything
+- Live player counts under each list and a clear &quot;★ Active Set&quot; indicator
+
+## [7.3.1] - 2026-06-28
+
+### Fixed
+- Fixed NullReferenceException when opening Stats Sets Manager
+- Enhanced Windows 2000 styling with proper groupboxes, beveled borders, and classic colors (#C0C0C0)
+- Improved tab layout with better spacing and professional groupbox containers
+- Status bar now shows active set name in blue at bottom
+
+## [7.3.0] - 2026-06-28
+
+### Improved (Major UX Redesign)
+- **Tabbed interface** — Two tabs: &quot;Manage Sets&quot; for set administration, &quot;Copy or Move Players&quot; for player operations
+- **Visual copy/move workflow** — Side-by-side player lists with arrow buttons (→ Copy →, → Move →) making the workflow immediately clear
+- **Better set management** — Manage, create, rename, delete, and activate sets all in one clean tab
+- **Windows 2000 classic aesthetic** — Proper beveled borders, GroupBoxes, classic gray background (#C0C0C0)
+- **Live preview** — Right-side player list updates as you select target set, showing exactly what will be there
+- **Multi-select support** — Ctrl+Click multiple players for batch operations
+- **Much simpler workflow** — No more nested dialogs, everything is in the main window
+
+## [7.2.0] - 2026-06-28
+
+### Improved
+- **Stats Sets management** is now much more intuitive with side-by-side player list and Copy/Move buttons
+- **Windows 2000/ME aesthetic** with colorful blue header panel (#0066CC) and improved button layout
+- **Multi-select players**: Hold Ctrl/Shift to select multiple players to copy or move at once
+- **Clear feedback**: Visual labels show exactly which set you&#39;re managing and how many players are in it
+- **Dialogs redesigned**: All player management dialogs now match the classic Windows 2000/ME style
+
+## [7.1.1] - 2026-06-28
+
+### Improved
+- **Stats Editor / Manager**: Added set switcher dropdown — seamlessly switch between sets without closing the dialog
+- **Stats Editor grid**: Now shows &quot;Editing {Set} — {N} players&quot; for clarity
+- **Dialog styling**: Enhanced WinME-compatible visual design throughout (consistent with main app aesthetic)
+- **User experience**: Better feedback and affordances in stats-management workflows
+
+## [7.1.0] - 2026-06-28
+
+### Added
+- **Stats Sets** (Tools → Stats Sets): keep independent groups of players, each with their own statistics, and switch between them instantly. The &quot;Default&quot; set holds your existing stats.
+- **Stats Editor / Manager** (Tools → Stats Editor / Manager): view and edit every player&#39;s games, wins, eliminations, errors and guesses for the active set; add or remove players.
+- **Move Player Between Sets** (Tools → Move Player Between Sets): relocate a player to another set without changing any of their statistics.
+- **Live statistics in the status bar** (bottom-left): shows the active set, player count, total games, players in the current game and wrong guesses. The copyright/version stays bottom-right.
+
+### Changed
+- **All copy/export functions moved from the Edit menu to the Tools menu**, grouped under a single **Copy &amp; Export** submenu. The Edit menu now holds Refresh Statistics and Clear Game Log.
+- Application settings (language, shortcuts, preferences) are now shared across all stats sets.
+
+### Added
+- **Stats Sets** (Tools → Stats Sets): keep independent groups of players, each with their own statistics, and switch between them instantly. The &quot;Default&quot; set holds your existing stats.
+- **Stats Editor / Manager** (Tools → Stats Editor / Manager): view and edit every player&#39;s games, wins, eliminations, errors and guesses for the active set; add or remove players.
+- **Move Player Between Sets** (Tools → Move Player Between Sets): relocate a player to another set without changing any of their statistics.
+- **Live statistics in the status bar** (bottom-left): shows the active set, player count, total games, players in the current game and wrong guesses. The copyright/version stays bottom-right.
+
+### Changed
+- **All copy/export functions moved from the Edit menu to the Tools menu**, grouped under a single **Copy &amp; Export** submenu. The Edit menu now holds Refresh Statistics and Clear Game Log.
+- Application settings (language, shortcuts, preferences) are now shared across all stats sets.
+
+## [7.0.34] - 2026-06-25
+
+### Added
+- **Comprehensive keyboard shortcuts** for all menu items: Game, Copy &amp; Export, Players, View, Tools, Settings
+- **Customizable shortcuts** via Settings menu (Ctrl+, to open Settings)
+- All copy/export tools consolidated in Edit menu with shortcuts:
+  - Copy Word Progress (Ctrl+C)
+  - Copy Top 10 Stats (Ctrl+Shift+D)
+  - Copy Last Game Overview (Ctrl+Shift+O)
+  - Copy Complete Stats Image (Ctrl+Shift+I)
+  - And more...
+- Quick keyboard access to Game Rules (Ctrl+G), Player Compare (Ctrl+Shift+C), Word Display (Ctrl+W)
+
+## [7.0.33] - 2026-06-25
+
+### Added
+- **Help → Mean Green 2023 Ford Fiesta ST** — view the car in a separate window
+- **Player Comparison HTML export**: added column descriptions below each section (Head to head, Multi-player, Pairwise matrix)
+
+### Changed
+- **Installer**: removed manual &quot;Restore stats&quot; task. New installs start with empty stats; upgrades preserve existing stats automatically
+
+## [7.0.32] - 2026-06-17
+
+### Added
+- Keyboard shortcut for **Copy Complete Stats Image** (default **Ctrl+Shift+I**), customizable in Settings → Keyboard shortcuts
+
+## [7.0.31] - 2026-06-17
+
+### Improved
+- **Stats Graph** tab: click a column header (Player, Games breakdown, Games, Elim., Win %) to sort high to low; Sort dropdown stays in sync
+
+## [7.0.30] - 2026-06-17
+
+### Changed
+- Renamed main form source files and class from `Galgjev6` to `Galgjev7` (no gameplay changes)
+
+## [7.0.29] - 2026-06-17
+
+### Changed
+- **Tools → Copy Last Game Overview Image** replaces the multi-image clipboard pack: builds one dark-themed HTML report (saved to your export folder), screenshots the full overview, and copies a single image to the clipboard
+
+## [7.0.28] - 2026-06-17
+
+### Added
+- **Tools → Copy Last Game Stats Images (All)** — copies separate PNGs for last-game header, guess timeline, player stats, comparisons, career snapshot, and compare charts; paste multiple pictures at once in Word, Teams, etc.
+
+## [7.0.27] - 2026-06-17
+
+### Added
+- **Tools → Game Rules…** dialog for configurable game mechanics
+- Global max wrong guesses per game (default 10); per-player wrong/total guess limits; per-word wrong-guess overrides
+- Options: eliminate on limits, repeat guesses as wrong, host wins on hangman complete, allow/disable manual elimination and winner
+
+## [7.0.26] - 2026-06-17
+
+### Improved
+- **Word Display** window redesigned for projector/second-screen use: fixed grid layout (no overlapping panels), larger default size (1920&#215;1080)
+- Players, hangman, global letters, and all-time wins each in their own panel; footer shows version + copyright (left) and timer (right)
+
+## [7.0.25] - 2026-06-17
+
+### Improved
+- **Stats Graph** tab: added **Elim.** column showing each player&#39;s elimination count
+
+## [7.0.24] - 2026-06-17
+
+### Improved
+- **Stats Graph** tab redesigned: each bar shows wins (green), other games (grey), and eliminations (red) as a share of games played
+- Sort by wins, win rate, games, eliminations, or name; show top 10/15/25 or all players
+- Column headers, legend, hover highlight, and detailed tooltips
+
+## [7.0.23] - 2026-06-17
+
+### Changed
+- Removed trailing colons from main window tab names (Players, Played words, Player Statistics, Game Log, Notes)
+
+## [7.0.22] - 2026-06-17
+
+### Changed
+- **Search Played Words...** moved from View to **Tools** menu (shortcut Ctrl+Shift+H unchanged)
+
+## [7.0.21] - 2026-06-17
+
+### Added
+- **View → Search Played Words...** (Ctrl+Shift+H): live filter through all-time played words; exact match shows times played and last date, or confirms a word is new
+
+## [7.0.20] - 2026-06-17
+
+### Added
+- **Player Manager → Export** tab: general overviews (league, tonight, all-time, achievements, full pack), per-player HTML/CSV, multi-game selection with HTML/CSV
+- **Players → Export Statistics (PDF, HTML, CSV)...** menu opens the Export tab
+- Word History tab: Save HTML/CSV for selected game; quick Export button
+- All Players: quick **Export…** button
+
+## [7.0.19] - 2026-06-17
+
+### Fixed
+- Settings window title showed `&amp;Settings` (menu shortcut marker) — dialog now uses a plain **Settings** title
+- Clearer label for the HTML option: opens exported **HTML report files** in your browser after you save them
+
+## [7.0.18] - 2026-06-17
+
+### Added
+- **Settings** expanded with tabs: Export &amp; PDF, Logging, Statistics, Data &amp; privacy (plus richer Display and shortcuts)
+- PDF guide in Settings with shortcuts to Compare players, Export Center, and export folder
+- **Statistics Export Center**: Save HTML buttons, full statistics pack (HTML → print to PDF), configurable log line count
+- Export options: default folder, clipboard image theme (dark/classic), open HTML after save, PDF tip dialog
+- Player Manager remembers last tab; word display optional always-on-top
+- Optional stats CSV backup on exit; configurable confirm-before-clear log
+- Keyboard shortcut for Compare players (Ctrl+Shift+C)
+
+## [7.0.17] - 2026-06-17
+
+### Added
+- **Players → Compare Players (charts, Excel, PDF)...** menu item opens Player Manager directly on the Compare tab
+- Short guide on the Compare tab explaining sub-tabs and CSV/HTML/PDF export
+
+## [7.0.16] - 2026-06-17
+
+### Added
+- **Player Manager → Compare** overhaul: 1 vs 1, multi-player (up to 8), and pairwise win matrix sub-tabs
+- Metric picker (wins, win rate, correct letters, accuracy, games, guesses), stats table, horizontal + vertical charts
+- Export bar: copy text/chart, save CSV (Excel), save HTML (Excel/browser, print to PDF)
+
+## [7.0.15] - 2026-06-17
+
+### Improved
+- **Statistics Export Center** restyled to match the classic Windows / WinME look of the rest of the game (grey chrome, GroupBoxes, standard buttons and combos)
+
+## [7.0.14] - 2026-06-17
+
+### Fixed
+- **Player Manager** column header right-click menu did not open — column headers are a separate Windows control; the app now hooks them directly for the show/hide columns menu
+
+## [7.0.13] - 2026-06-17
+
+### Fixed
+- **Player Manager** “Games” column showed player names because an extra hidden Display column shifted all values one position to the left
+
+### Added
+- **Player Manager** column picker: right-click a column header to show or hide columns (Name, Display, Games, Wins, achievements, tags, and more). Your choices are remembered.
+
+## [7.0.12] - 2026-06-17
+
+### Added
+- **Achievements** tab in Player Manager: filter by player, view unlocked badges, browse full catalog with criteria, and see who earned each badge
+- Improved **Copy Achievements Report** with per-player earned/locked status, unlock criteria, and holder names
+
+## [7.0.11] - 2026-06-17
+
+### Fixed
+- **About Galgje** dialog text clipping in header, metadata columns, and footer legal text
+
+## [7.0.10] - 2026-06-17
+
+### Improved
+- **About Galgje** dialog redesigned with a blue graphical layout (Track-It style): product info, installed components, system details, Copy Info, and quick links to manual/changelog/data folder
+
+## [7.0.9] - 2026-06-17
+
+### Fixed
+- Player Manager charts assign **distinct colors per player** (compare radar/bars, leaderboard scatter, multi-compare) instead of everyone sharing the default green
+
+## [7.0.8] - 2026-06-17
+
+### Added
+- **Settings → Keyboard shortcuts** tab to customize menu shortcuts (new game, random word, pause timer, stats export, player manager, word window, switch language, settings)
+- Shortcuts are saved in `game_settings.ini` and applied immediately after saving settings
+
+### Improved
+- **Player Manager** tab panels now resize with the window so charts, lists, and Hall of Fame use the full available space
+
+## [7.0.7] - 2026-06-17
+
+### Improved
+- **Player Manager** opens larger (1280&#215;920), is resizable/maximizable, and scrolls tab content when needed so panels are no longer clipped
+
+## [7.0.6] - 2026-06-17
+
+### Fixed
+- Dutch **Random Word** now reliably includes words longer than 12 letters — builds a versioned hangman word list from the full OpenTaal file, removes legacy short-word caches, and normalizes accented letters (e.g. &#235; → E)
+
+## [7.0.5] - 2026-06-17
+
+### Fixed
+- **Random Word** no longer caps words at 10 letters — any valid A–Z word from the Dutch or English word list can be chosen
+- AppData word-list cache is refreshed from the bundled full list so older 10-letter-filtered caches no longer block long words
+
+## [7.0.4] - 2026-06-17
+
+### Fixed
+- Edit menu items no longer show raw keys like `MenuCopyLastGame` — duplicate Tools-menu items were not receiving translations
+- Main window title bar now shows the real version (e.g. `Galgje v7.0.4.…`) instead of hardcoded `Galgje v6`
+
+### Changed
+- Clearer menu labels for clipboard/export options (text vs image, what each report contains)
+
 ## [7.0.3] - 2026-06-17
 
 ### Added
